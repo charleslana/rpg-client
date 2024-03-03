@@ -3,6 +3,7 @@ body {
   padding: 0;
   color: rgba(255, 255, 255, 0.87);
   background-color: #000000;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #app {
@@ -17,4 +18,14 @@ body {
 @font-face {
   font-family: 'PressStart2P';
   src: url('assets/fonts/PressStart2P.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DINAlternateBold';
+  src: url('assets/fonts/DINAlternateBold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'TrajanProRegular';
+  src: url('assets/fonts/TrajanProRegular.ttf') format('truetype');
 }

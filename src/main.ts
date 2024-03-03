@@ -2,6 +2,7 @@ import * as Phaser from 'phaser';
 import { BattleScene } from './scenes/BattleScene';
 import { Game, Types } from 'phaser';
 import { HomeScene } from './scenes/HomeScene';
+import { LoginScene } from './scenes/LoginScene';
 import { PreloadScene } from './scenes/PreloadScene';
 
 const config: Types.Core.GameConfig = {
@@ -25,7 +26,7 @@ const config: Types.Core.GameConfig = {
   audio: {
     disableWebAudio: true,
   },
-  scene: [PreloadScene, HomeScene, BattleScene],
+  scene: [PreloadScene, LoginScene, HomeScene, BattleScene],
 };
 
 export default new Game(config);

@@ -2,6 +2,8 @@ export const battleBackground1 = 'battleBackground1';
 
 export const shadowIcon = 'shadowIcon';
 
+export const loginBackground = 'loginBackground';
+
 export const fireKnightIdle = 'fireKnightIdle';
 export const fireKnightRun = 'fireKnightRun';
 export const fireKnightAttackMelee = 'fireKnightAttackMelee';

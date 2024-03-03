@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { homeSceneKey, preloadSceneKey } from '../data/sceneKeys';
+import { loginSceneKey, preloadSceneKey } from '../data/sceneKeys';
 import {
   battleBackground1,
   fireKnightAttackArea,
@@ -7,6 +7,7 @@ import {
   fireKnightAttackMelee,
   fireKnightIdle,
   fireKnightRun,
+  loginBackground,
   mageAttackArea,
   mageAttackAreaObject,
   mageIdle,
@@ -28,6 +29,7 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload(): void {
+    this.cameras.main.setBackgroundColor('#000000');
     this.createProgressBar();
     this.createLoadingText();
     this.createPercentText();
@@ -121,7 +123,7 @@ export class PreloadScene extends Phaser.Scene {
     this.loadingText.destroy();
     this.percentText.destroy();
     this.assetText.destroy();
-    this.scene.start(homeSceneKey);
+    this.scene.start(loginSceneKey);
   }
 
   private loadAssets(): void {
@@ -130,6 +132,11 @@ export class PreloadScene extends Phaser.Scene {
     this.loadFireKnight();
     this.loadRanger();
     this.loadMage();
+    this.loadLogin();
+  }
+
+  private loadLogin(): void {
+    this.load.image(loginBackground, './assets/images/login/login-bg.png');
   }
 
   private loadBattleBackground(): void {
