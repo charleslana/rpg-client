@@ -53,6 +53,9 @@ export class BattleScene extends Phaser.Scene {
     this.input.keyboard!.on('keydown-R', () => {
       this.scene.restart();
     });
+    this.input.keyboard!.on('keydown-F', () => {
+      this.showDialog();
+    });
   }
 
   private createSpeedButton(): void {
