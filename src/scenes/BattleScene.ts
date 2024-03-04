@@ -1,18 +1,18 @@
 import * as Phaser from 'phaser';
-import { battleBackground1 } from '../data/assetKeys';
+import { AssetKeysEnum } from '../enum/AssetKeysEnum';
 import { BattleReport } from '../battle/BattleReport';
-import { battleSceneKey, homeSceneKey } from '../data/sceneKeys';
-import { Character } from '../battle/Character';
+import { Character } from '../components/Character';
 import { CharacterSkillEnum } from '../enum/CharacterSkillEnum';
 import { FinalDialog } from '../battle/FinalDialog';
 import { IReportLog, ITo } from '../interface/IReportLog';
 import { report } from '../data/report';
+import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 import { Slot } from '../battle/Slot';
 import { SpeedButton } from '../battle/SpeedButton';
 
 export class BattleScene extends Phaser.Scene {
   constructor() {
-    super({ key: battleSceneKey });
+    super({ key: SceneKeyEnum.BattleSceneKey });
   }
 
   private battleReport: BattleReport;
@@ -24,7 +24,7 @@ export class BattleScene extends Phaser.Scene {
 
   preload(): void {
     this.setBackgroundImage();
-    this.createLayout();
+    this.createKeyboard();
   }
 
   create(): void {
@@ -37,17 +37,15 @@ export class BattleScene extends Phaser.Scene {
 
   private setBackgroundImage(): void {
     this.cameras.main.setBackgroundColor('#ffffff');
-    const backgroundImage = this.add.image(0, 0, battleBackground1).setOrigin(0, 0);
+    const backgroundImage = this.add
+      .image(0, 0, AssetKeysEnum.BattleForestBackground)
+      .setOrigin(0, 0);
     backgroundImage.setDisplaySize(this.cameras.main.width, this.cameras.main.height);
   }
 
-  private createLayout(): void {
-    this.add.text(100, 100, 'Cena 2 - Pressione tecla delete para voltar para a cena anterior', {
-      backgroundColor: '#ffffff',
-      color: '#000000',
-    });
+  private createKeyboard(): void {
     this.input.keyboard!.on('keydown-DELETE', () => {
-      this.scene.start(homeSceneKey);
+      this.scene.start(SceneKeyEnum.HomeSceneKey);
     });
     this.input.keyboard!.on('keydown-S', () => {
       this.start();

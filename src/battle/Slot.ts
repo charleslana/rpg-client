@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { Character } from './Character';
+import { Character } from '../components/Character';
 
 export class Slot extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {

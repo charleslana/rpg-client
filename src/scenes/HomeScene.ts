@@ -1,9 +1,9 @@
 import * as Phaser from 'phaser';
-import { battleSceneKey, homeSceneKey } from '../data/sceneKeys';
+import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
 export class HomeScene extends Phaser.Scene {
   constructor() {
-    super({ key: homeSceneKey });
+    super({ key: SceneKeyEnum.HomeSceneKey });
   }
 
   create(): void {
@@ -39,6 +39,6 @@ export class HomeScene extends Phaser.Scene {
   }
 
   private goToBattleScene(): void {
-    this.scene.start(battleSceneKey);
+    this.scene.start(SceneKeyEnum.BattleSceneKey);
   }
 }

@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
+import { AssetKeysEnum } from '../enum/AssetKeysEnum';
 import { ICharacterAnimation } from '../interface/ICharacterAnimation';
-import { shadowIcon } from '../data/assetKeys';
 
 export class Shadow extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Phaser.Scene, x: number, y: number) {
@@ -31,6 +31,6 @@ export class Shadow extends Phaser.Physics.Arcade.Sprite {
   }
 
   private create(): void {
-    this.sprite = this.scene.physics.add.sprite(this.x, this.y, shadowIcon);
+    this.sprite = this.scene.physics.add.sprite(this.x, this.y, AssetKeysEnum.ShadowIcon);
   }
 }

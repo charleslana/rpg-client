@@ -1,0 +1,16 @@
+export enum AssetKeysEnum {
+  BattleForestBackground = 'BattleForestBackground',
+  ShadowIcon = 'ShadowIcon',
+  LoginBackground = 'LoginBackground',
+  FireKnightIdle = 'FireKnightIdle',
+  FireKnightRun = 'FireKnightRun',
+  FireKnightAttackMelee = 'FireKnightAttackMelee',
+  FireKnightAttackArea = 'FireKnightAttackArea',
+  FireKnightAttackAreaObject = 'FireKnightAttackAreaObject',
+  RangerIdle = 'RangerIdle',
+  RangerAttackRanged = 'RangerAttackRanged',
+  RangerAttackRangedObject = 'RangerAttackRangedObject',
+  MageIdle = 'MageIdle',
+  MageAttackArea = 'MageAttackArea',
+  MageAttackAreaObject = 'MageAttackAreaObject',
+}

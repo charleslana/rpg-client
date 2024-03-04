@@ -1,21 +1,6 @@
 import * as Phaser from 'phaser';
-import { loginSceneKey, preloadSceneKey } from '../data/sceneKeys';
-import {
-  battleBackground1,
-  fireKnightAttackArea,
-  fireKnightAttackAreaObject,
-  fireKnightAttackMelee,
-  fireKnightIdle,
-  fireKnightRun,
-  loginBackground,
-  mageAttackArea,
-  mageAttackAreaObject,
-  mageIdle,
-  rangerAttackRanged,
-  rangerAttackRangedObject,
-  rangerIdle,
-  shadowIcon,
-} from '../data/assetKeys';
+import { AssetKeysEnum } from '../enum/AssetKeysEnum';
+import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
 export class PreloadScene extends Phaser.Scene {
   private progressBar: Phaser.GameObjects.Graphics;
@@ -25,7 +10,7 @@ export class PreloadScene extends Phaser.Scene {
   private assetText: Phaser.GameObjects.Text;
 
   constructor() {
-    super({ key: preloadSceneKey });
+    super({ key: SceneKeyEnum.PreloadSceneKey });
   }
 
   preload(): void {
@@ -123,7 +108,7 @@ export class PreloadScene extends Phaser.Scene {
     this.loadingText.destroy();
     this.percentText.destroy();
     this.assetText.destroy();
-    this.scene.start(loginSceneKey);
+    this.scene.start(SceneKeyEnum.LoginSceneKey);
   }
 
   private loadAssets(): void {
@@ -136,40 +121,40 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   private loadLogin(): void {
-    this.load.image(loginBackground, './assets/images/login/login-bg.png');
+    this.load.image(AssetKeysEnum.LoginBackground, './assets/images/login/login-bg.png');
   }
 
   private loadBattleBackground(): void {
-    this.load.image(battleBackground1, './assets/images/battle-bg/1.png');
+    this.load.image(AssetKeysEnum.BattleForestBackground, './assets/images/battle-bg/1.png');
   }
 
   private loadIcons(): void {
-    this.load.image(shadowIcon, './assets/images/icons/shadow.png');
+    this.load.image(AssetKeysEnum.ShadowIcon, './assets/images/icons/shadow.png');
   }
 
   private loadFireKnight(): void {
     this.load.atlas(
-      fireKnightIdle,
+      AssetKeysEnum.FireKnightIdle,
       './assets/images/characters/fire_knight/fire_knight_idle.png',
       './assets/images/characters/fire_knight/fire_knight_idle.json'
     );
     this.load.atlas(
-      fireKnightRun,
+      AssetKeysEnum.FireKnightRun,
       './assets/images/characters/fire_knight/fire_knight_run.png',
       './assets/images/characters/fire_knight/fire_knight_run.json'
     );
     this.load.atlas(
-      fireKnightAttackMelee,
+      AssetKeysEnum.FireKnightAttackMelee,
       './assets/images/characters/fire_knight/fire_knight_attack_melee.png',
       './assets/images/characters/fire_knight/fire_knight_attack_melee.json'
     );
     this.load.atlas(
-      fireKnightAttackArea,
+      AssetKeysEnum.FireKnightAttackArea,
       './assets/images/characters/fire_knight/fire_knight_attack_area.png',
       './assets/images/characters/fire_knight/fire_knight_attack_area.json'
     );
     this.load.atlas(
-      fireKnightAttackAreaObject,
+      AssetKeysEnum.FireKnightAttackAreaObject,
       './assets/images/characters/fire_knight/fire_knight_attack_area_object.png',
       './assets/images/characters/fire_knight/fire_knight_attack_area_object.json'
     );
@@ -177,17 +162,17 @@ export class PreloadScene extends Phaser.Scene {
 
   private loadRanger(): void {
     this.load.atlas(
-      rangerIdle,
+      AssetKeysEnum.RangerIdle,
       './assets/images/characters/ranger/ranger_idle.png',
       './assets/images/characters/ranger/ranger_idle.json'
     );
     this.load.atlas(
-      rangerAttackRanged,
+      AssetKeysEnum.RangerAttackRanged,
       './assets/images/characters/ranger/ranger_attack_ranged.png',
       './assets/images/characters/ranger/ranger_attack_ranged.json'
     );
     this.load.atlas(
-      rangerAttackRangedObject,
+      AssetKeysEnum.RangerAttackRangedObject,
       './assets/images/characters/ranger/ranger_attack_ranged_object.png',
       './assets/images/characters/ranger/ranger_attack_ranged_object.json'
     );
@@ -195,17 +180,17 @@ export class PreloadScene extends Phaser.Scene {
 
   private loadMage(): void {
     this.load.atlas(
-      mageIdle,
+      AssetKeysEnum.MageIdle,
       './assets/images/characters/mage/mage_idle.png',
       './assets/images/characters/mage/mage_idle.json'
     );
     this.load.atlas(
-      mageAttackArea,
+      AssetKeysEnum.MageAttackArea,
       './assets/images/characters/mage/mage_area.png',
       './assets/images/characters/mage/mage_area.json'
     );
     this.load.atlas(
-      mageAttackAreaObject,
+      AssetKeysEnum.MageAttackAreaObject,
       './assets/images/characters/mage/mage_area_object.png',
       './assets/images/characters/mage/mage_area_object.json'
     );

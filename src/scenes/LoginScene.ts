@@ -1,10 +1,11 @@
 import * as Phaser from 'phaser';
-import { loginBackground } from '../data/assetKeys';
-import { loginSceneKey } from '../data/sceneKeys';
+import { AssetKeysEnum } from '../enum/AssetKeysEnum';
+import { Character } from '../components/Character';
+import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
 export class LoginScene extends Phaser.Scene {
   constructor() {
-    super({ key: loginSceneKey });
+    super({ key: SceneKeyEnum.LoginSceneKey });
   }
 
   private offcanvas: Phaser.GameObjects.Container;
@@ -16,12 +17,13 @@ export class LoginScene extends Phaser.Scene {
     this.setBackgroundImage();
     this.createLogoText();
     this.createBlinkingText();
+    this.createCharacters();
     this.createOffcanvas();
   }
 
   private setBackgroundImage(): void {
     this.cameras.main.setBackgroundColor('#ffffff');
-    const backgroundImage = this.add.image(0, 0, loginBackground).setOrigin(0, 0);
+    const backgroundImage = this.add.image(0, 0, AssetKeysEnum.LoginBackground).setOrigin(0, 0);
     backgroundImage.setDisplaySize(this.cameras.main.width, this.cameras.main.height);
     const hitArea = this.add.rectangle(
       0,
@@ -84,10 +86,27 @@ export class LoginScene extends Phaser.Scene {
     });
   }
 
+  private createCharacters(): void {
+    const fireKnight = new Character(this, 400, 470);
+    fireKnight.createCharacter({
+      id: 1,
+      characterId: 1,
+      slot: 0,
+    });
+    const ranged = new Character(this, 600, 470);
+    ranged.createCharacter({
+      id: 2,
+      characterId: 2,
+      slot: 0,
+      isFlip: true,
+    });
+  }
+
   private createOffcanvas(): void {
     this.containerWidth = this.cameras.main.width;
     this.containerHeight = this.cameras.main.height;
     this.offcanvas = this.add.container(0, 0);
+    this.offcanvas.setDepth(999);
     this.createOverlay();
     const offcanvasContent = this.createOffcanvasContent();
     const closeButton = this.createCloseButton();
@@ -148,7 +167,7 @@ export class LoginScene extends Phaser.Scene {
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
     button1.on(Phaser.Input.Events.POINTER_DOWN, () => {
-      console.log('Button 1 clicked');
+      this.scene.start(SceneKeyEnum.HomeSceneKey);
     });
     return button1;
   }
@@ -158,15 +177,13 @@ export class LoginScene extends Phaser.Scene {
       .text(this.containerWidth / 2 + 220, this.containerHeight * 0.75, 'É a primeira vez aqui', {
         fontFamily: 'DINAlternateBold',
         fontSize: '24px',
-        color: '#ffffff', // Branco
-        backgroundColor: '#007bff', // Azul
+        color: '#ffffff',
+        backgroundColor: '#007bff',
         padding: { left: 10, right: 10, top: 5, bottom: 5 },
       })
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
-    button2.on(Phaser.Input.Events.POINTER_DOWN, () => {
-      console.log('Button 2 clicked');
-    });
+    button2.on(Phaser.Input.Events.POINTER_DOWN, () => {});
     return button2;
   }
 
