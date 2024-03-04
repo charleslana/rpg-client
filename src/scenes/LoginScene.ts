@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import { AssetKeysEnum } from '../enum/AssetKeysEnum';
 import { Character } from '../components/Character';
+import { LoginModal } from '../login/LoginModal';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
 export class LoginScene extends Phaser.Scene {
@@ -12,6 +13,7 @@ export class LoginScene extends Phaser.Scene {
   private overlay: Phaser.GameObjects.Rectangle;
   private containerWidth: number;
   private containerHeight: number;
+  private loginModal: LoginModal;
 
   create(): void {
     this.setBackgroundImage();
@@ -19,6 +21,9 @@ export class LoginScene extends Phaser.Scene {
     this.createBlinkingText();
     this.createCharacters();
     this.createOffcanvas();
+    this.createLoginModal();
+    this.createVersionText();
+    this.createByText();
   }
 
   private setBackgroundImage(): void {
@@ -150,7 +155,7 @@ export class LoginScene extends Phaser.Scene {
         color: '#ffffff',
       })
       .setOrigin(1, 0)
-      .setInteractive();
+      .setInteractive({ useHandCursor: true });
     closeButton.on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.hideOffcanvas();
     });
@@ -158,7 +163,7 @@ export class LoginScene extends Phaser.Scene {
   }
 
   private createLoginButton(): Phaser.GameObjects.Text {
-    const button1 = this.add
+    const button = this.add
       .text(this.containerWidth / 2 - 220, this.containerHeight * 0.75, 'Já tenho conta', {
         fontFamily: 'DINAlternateBold',
         fontSize: '24px',
@@ -166,14 +171,14 @@ export class LoginScene extends Phaser.Scene {
       })
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
-    button1.on(Phaser.Input.Events.POINTER_DOWN, () => {
-      this.scene.start(SceneKeyEnum.HomeSceneKey);
+    button.on(Phaser.Input.Events.POINTER_DOWN, () => {
+      this.loginModal.show();
     });
-    return button1;
+    return button;
   }
 
   private createRegisterButton(): Phaser.GameObjects.Text {
-    const button2 = this.add
+    const button = this.add
       .text(this.containerWidth / 2 + 220, this.containerHeight * 0.75, 'É a primeira vez aqui', {
         fontFamily: 'DINAlternateBold',
         fontSize: '24px',
@@ -183,8 +188,8 @@ export class LoginScene extends Phaser.Scene {
       })
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
-    button2.on(Phaser.Input.Events.POINTER_DOWN, () => {});
-    return button2;
+    button.on(Phaser.Input.Events.POINTER_DOWN, () => {});
+    return button;
   }
 
   private showOffcanvas(): void {
@@ -205,6 +210,50 @@ export class LoginScene extends Phaser.Scene {
       ease: Phaser.Math.Easing.Back.In,
       onComplete: () => {
         this.offcanvas.setVisible(false);
+      },
+    });
+  }
+
+  private createLoginModal(): void {
+    this.loginModal = new LoginModal(this);
+    this.loginModal.on(this.loginModal.event, this.goToHome, this);
+  }
+
+  private goToHome(): void {
+    this.scene.start(SceneKeyEnum.HomeSceneKey);
+  }
+
+  private createVersionText(): void {
+    this.add.text(
+      this.containerWidth - 40,
+      this.containerHeight - 20,
+      `v.${process.env.npm_package_version}`,
+      {
+        fontFamily: 'DINAlternateBold',
+        fontSize: '12px',
+        color: '#ffffff',
+        shadow: {
+          offsetX: 3,
+          offsetY: 3,
+          color: '#000000',
+          blur: 5,
+          fill: true,
+        },
+      }
+    );
+  }
+
+  private createByText(): void {
+    this.add.text(5, this.containerHeight - 20, 'Feito por Charles', {
+      fontFamily: 'DINAlternateBold',
+      fontSize: '12px',
+      color: '#ffffff',
+      shadow: {
+        offsetX: 3,
+        offsetY: 3,
+        color: '#000000',
+        blur: 5,
+        fill: true,
       },
     });
   }

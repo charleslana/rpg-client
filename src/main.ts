@@ -10,6 +10,9 @@ const config: Types.Core.GameConfig = {
   pixelArt: true,
   parent: 'game-container',
   backgroundColor: '#028af8',
+  dom: {
+    createContainer: true,
+  },
   scale: {
     width: 1024,
     height: 576,
