@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import { AssetKeysEnum } from '../enum/AssetKeysEnum';
 import { Character } from '../components/Character';
+import { I18nUtils } from '../utils/I18nUtils';
 import { LoginModal } from '../login/LoginModal';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
@@ -49,7 +50,7 @@ export class LoginScene extends Phaser.Scene {
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 4;
     this.add
-      .text(centerX, centerY, 'Heróis da Jornada', {
+      .text(centerX, centerY, I18nUtils.getTranslation(this, 'logoName'), {
         fontFamily: 'TrajanProRegular',
         fontSize: '48px',
         color: '#ffffff',
@@ -68,7 +69,7 @@ export class LoginScene extends Phaser.Scene {
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 2;
     const text = this.add
-      .text(centerX, centerY, 'Clique para começar', {
+      .text(centerX, centerY, I18nUtils.getTranslation(this, 'tapToStart'), {
         fontFamily: 'DINAlternateBold',
         fontSize: '32px',
         color: '#ffffff',
@@ -244,17 +245,22 @@ export class LoginScene extends Phaser.Scene {
   }
 
   private createByText(): void {
-    this.add.text(5, this.containerHeight - 20, 'Feito por Charles', {
-      fontFamily: 'DINAlternateBold',
-      fontSize: '12px',
-      color: '#ffffff',
-      shadow: {
-        offsetX: 3,
-        offsetY: 3,
-        color: '#000000',
-        blur: 5,
-        fill: true,
-      },
-    });
+    this.add.text(
+      5,
+      this.containerHeight - 20,
+      I18nUtils.getTranslation(this, 'createBy', { name: 'Charles' }),
+      {
+        fontFamily: 'DINAlternateBold',
+        fontSize: '12px',
+        color: '#ffffff',
+        shadow: {
+          offsetX: 3,
+          offsetY: 3,
+          color: '#000000',
+          blur: 5,
+          fill: true,
+        },
+      }
+    );
   }
 }

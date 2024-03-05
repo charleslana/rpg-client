@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser';
 import { AssetKeysEnum } from '../enum/AssetKeysEnum';
+import { I18nUtils } from '../utils/I18nUtils';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
 export class PreloadScene extends Phaser.Scene {
@@ -112,12 +113,24 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   private loadAssets(): void {
+    this.loadI18n();
     this.loadBattleBackground();
     this.loadIcons();
     this.loadFireKnight();
     this.loadRanger();
     this.loadMage();
     this.loadLogin();
+  }
+
+  private loadI18n(): void {
+    const language = I18nUtils.get();
+    if (language) {
+      I18nUtils.setLanguage(language);
+    } else {
+      I18nUtils.setLanguage(navigator.language.split('-')[0]);
+    }
+    this.load.json(AssetKeysEnum.En, './assets/i18n/en.json');
+    this.load.json(AssetKeysEnum.Pt, './assets/i18n/pt.json');
   }
 
   private loadLogin(): void {
