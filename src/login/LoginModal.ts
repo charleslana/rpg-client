@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser';
+import { Loading } from '../components/Loading';
 
 export class LoginModal extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {
@@ -11,6 +12,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
   private modal: Phaser.GameObjects.Container;
   private containerWidth = this.scene.cameras.main.width;
   private containerHeight = this.scene.cameras.main.height;
+  private errorMessage: Phaser.GameObjects.Text;
 
   public show(): void {
     this.modal.setVisible(true);
@@ -20,24 +22,51 @@ export class LoginModal extends Phaser.GameObjects.Container {
     this.modal.setVisible(false);
   }
 
+  public showErrorMessage(message: string): void {
+    this.errorMessage.setText(message);
+    this.errorMessage.setVisible(true);
+  }
+
+  public hideErrorMessage(): void {
+    this.errorMessage.setVisible(false);
+  }
+
   private createModal(): void {
-    const content = this.createContent();
     const text = this.createText();
     const closeButton = this.createCloseButton();
     const emailInput = this.createEmailInput();
     const passwordInput = this.createPasswordInput();
     const loginButton = this.createLoginButton();
+    const blockingRect = this.createBlocking();
+    this.createErrorMessage();
     this.modal = this.scene.add.container(0, 0);
     this.modal.setDepth(1000);
-    this.modal.add([content, text, closeButton, emailInput, passwordInput, loginButton]);
+    this.modal.add([
+      blockingRect,
+      text,
+      closeButton,
+      emailInput,
+      passwordInput,
+      loginButton,
+      this.errorMessage,
+    ]);
     this.hide();
   }
 
-  private createContent(): Phaser.GameObjects.Rectangle {
-    const content = this.scene.add
-      .rectangle(0, 0, this.containerWidth, this.containerHeight, 0xffffff)
-      .setOrigin(0);
-    return content;
+  private createBlocking(): Phaser.GameObjects.Rectangle {
+    const blockingRect = this.scene.add.rectangle(
+      0,
+      0,
+      this.containerWidth,
+      this.containerHeight,
+      0xffffff,
+      1
+    );
+    blockingRect.setOrigin(0);
+    blockingRect.setInteractive();
+    blockingRect.setDepth(1000);
+    blockingRect.on(Phaser.Input.Events.POINTER_DOWN, () => {});
+    return blockingRect;
   }
 
   private createText(): Phaser.GameObjects.Text {
@@ -62,6 +91,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
       .setInteractive({ useHandCursor: true });
     closeButton.on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.hide();
+      this.hideErrorMessage();
     });
     return closeButton;
   }
@@ -107,7 +137,26 @@ export class LoginModal extends Phaser.GameObjects.Container {
   }
 
   private emitButton(): void {
-    this.emit(this.event);
-    this.modal.destroy();
+    // this.emit(this.event);
+    // this.modal.destroy();
+    this.hide();
+    const loading = new Loading(this.scene);
+    loading.show();
+    this.scene.time.delayedCall(2000, () => {
+      loading.hide();
+      this.showErrorMessage('Ocorreu um erro, tente novamente');
+      this.show();
+    });
+  }
+
+  private createErrorMessage(): void {
+    this.errorMessage = this.scene.add
+      .text(this.containerWidth / 2, this.containerHeight / 2 + 100, 'Mensagem de erro', {
+        fontFamily: 'DINAlternateBold',
+        fontSize: '16px',
+        color: '#ff0000',
+      })
+      .setOrigin(0.5);
+    this.hideErrorMessage();
   }
 }

@@ -13,4 +13,5 @@ export enum AssetKeysEnum {
   MageIdle = 'MageIdle',
   MageAttackArea = 'MageAttackArea',
   MageAttackAreaObject = 'MageAttackAreaObject',
+  Loading = 'Loading',
 }

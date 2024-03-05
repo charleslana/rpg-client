@@ -130,6 +130,10 @@ export class PreloadScene extends Phaser.Scene {
 
   private loadIcons(): void {
     this.load.image(AssetKeysEnum.ShadowIcon, './assets/images/icons/shadow.png');
+    this.load.spritesheet(AssetKeysEnum.Loading, './assets/images/icons/loading.png', {
+      frameWidth: 62,
+      frameHeight: 62,
+    });
   }
 
   private loadFireKnight(): void {
