@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
+const WebpackObfuscator = require('webpack-obfuscator');
 
 const line = '---------------------------------------------------------';
 const msg = `Rpg client building, wait...`;
@@ -72,6 +73,12 @@ module.exports = {
       'typeof PLUGIN_FBINSTANT': JSON.stringify(false),
       'typeof FEATURE_SOUND': JSON.stringify(true),
     }),
+    new WebpackObfuscator(
+      {
+        rotateStringArray: true,
+      },
+      ['bundle.min.js']
+    ),
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
