@@ -44,12 +44,17 @@ export class Loading extends Phaser.GameObjects.Container {
 
   private createLoadingSprite(): Phaser.GameObjects.Sprite {
     const loadingSprite = this.scene.add.sprite(this.modalX, this.modalY, AssetKeysEnum.Loading);
-    this.scene.anims.create({
-      key: 'loadingAnimation',
-      frames: this.scene.anims.generateFrameNumbers(AssetKeysEnum.Loading, { start: 0, end: 120 }),
-      frameRate: 30,
-      repeat: -1,
-    });
+    if (!this.scene.anims.exists('loadingAnimation')) {
+      this.scene.anims.create({
+        key: 'loadingAnimation',
+        frames: this.scene.anims.generateFrameNumbers(AssetKeysEnum.Loading, {
+          start: 0,
+          end: 120,
+        }),
+        frameRate: 30,
+        repeat: -1,
+      });
+    }
     loadingSprite.play('loadingAnimation');
     return loadingSprite;
   }
