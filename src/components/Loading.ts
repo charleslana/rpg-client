@@ -32,6 +32,7 @@ export class Loading extends Phaser.GameObjects.Container {
     this.createOverlay();
     const loadingSprite = this.createLoadingSprite();
     this.modal.add([this.overlay, loadingSprite]);
+    this.hide();
   }
 
   private createOverlay(): void {

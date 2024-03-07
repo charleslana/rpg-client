@@ -3,6 +3,7 @@ import { AssetKeysEnum } from '../enum/AssetKeysEnum';
 import { Character } from '../components/Character';
 import { I18nUtils } from '../utils/I18nUtils';
 import { LoginModal } from '../login/LoginModal';
+import { RegisterModal } from '../login/RegisterModal';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
 export class LoginScene extends Phaser.Scene {
@@ -15,6 +16,7 @@ export class LoginScene extends Phaser.Scene {
   private containerWidth: number;
   private containerHeight: number;
   private loginModal: LoginModal;
+  private registerModal: RegisterModal;
 
   create(): void {
     this.setBackgroundImage();
@@ -23,6 +25,7 @@ export class LoginScene extends Phaser.Scene {
     this.createCharacters();
     this.createOffcanvas();
     this.createLoginModal();
+    this.createRegisterModal();
     this.createVersionText();
     this.createByText();
   }
@@ -189,7 +192,9 @@ export class LoginScene extends Phaser.Scene {
       })
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
-    button.on(Phaser.Input.Events.POINTER_DOWN, () => {});
+    button.on(Phaser.Input.Events.POINTER_DOWN, () => {
+      this.registerModal.show();
+    });
     return button;
   }
 
@@ -218,6 +223,11 @@ export class LoginScene extends Phaser.Scene {
   private createLoginModal(): void {
     this.loginModal = new LoginModal(this);
     this.loginModal.on(this.loginModal.event, this.goToHome, this);
+  }
+
+  private createRegisterModal(): void {
+    this.registerModal = new RegisterModal(this);
+    this.registerModal.on(this.loginModal.event, this.goToHome, this);
   }
 
   private goToHome(): void {

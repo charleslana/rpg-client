@@ -59,6 +59,7 @@ module.exports = {
       NODE_ENV: 'development',
       DEBUG: false,
       npm_package_version: JSON.stringify(process.env.npm_package_version),
+      API_URL: 'http://localhost:8080/api',
     }),
   ],
 };

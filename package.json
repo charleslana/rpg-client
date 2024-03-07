@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "src/main.js",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack/config.dev.js --open",
+    "dev": "webpack-dev-server --port 8081 --config webpack/config.dev.js --open",
     "build": "webpack --config webpack/config.prod.js",
     "start": "npx serve dist -s -l 4000",
     "lint": "eslint . --ext .ts",
@@ -36,6 +36,7 @@
     "webpack-obfuscator": "^3.5.1"
   },
   "dependencies": {
+    "axios": "^1.6.7",
     "phaser": "^3.80.1"
   }
 }
