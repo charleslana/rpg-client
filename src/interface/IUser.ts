@@ -10,5 +10,10 @@ export interface ILogin {
 }
 
 export interface IToken {
-  token: string;
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface UserMe {
+  name: string;
 }

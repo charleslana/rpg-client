@@ -1,7 +1,10 @@
 import * as Phaser from 'phaser';
+import UserService from '../service/UserService';
 import { AssetKeysEnum } from '../enum/AssetKeysEnum';
 import { Character } from '../components/Character';
 import { I18nUtils } from '../utils/I18nUtils';
+import { isAuthenticated, saveAccessToken } from '../utils/localStorageUtils';
+import { Loading } from '../components/Loading';
 import { LoginModal } from '../login/LoginModal';
 import { RegisterModal } from '../login/RegisterModal';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
@@ -17,6 +20,11 @@ export class LoginScene extends Phaser.Scene {
   private containerHeight: number;
   private loginModal: LoginModal;
   private registerModal: RegisterModal;
+  private loading: Loading;
+
+  init(): void {
+    this.loading = new Loading(this);
+  }
 
   create(): void {
     this.setBackgroundImage();
@@ -45,6 +53,10 @@ export class LoginScene extends Phaser.Scene {
     hitArea.setOrigin(0);
     hitArea.setInteractive({ useHandCursor: true });
     hitArea.on(Phaser.Input.Events.POINTER_DOWN, () => {
+      if (isAuthenticated()) {
+        this.refreshAccessToken();
+        return;
+      }
       this.showOffcanvas();
     });
   }
@@ -227,11 +239,32 @@ export class LoginScene extends Phaser.Scene {
 
   private createRegisterModal(): void {
     this.registerModal = new RegisterModal(this);
-    this.registerModal.on(this.loginModal.event, this.goToHome, this);
+    this.registerModal.on(
+      this.registerModal.event,
+      (args: [string, string]) => this.goToLogin(args[0], args[1]),
+      this
+    );
   }
 
   private goToHome(): void {
     this.scene.start(SceneKeyEnum.HomeSceneKey);
+  }
+
+  private goToLogin(email: string, password: string): void {
+    this.loginModal.login(email, password);
+  }
+
+  private async refreshAccessToken(): Promise<void> {
+    this.loading.show();
+    try {
+      const response = await UserService.refreshAccessToken();
+      saveAccessToken(response.accessToken);
+      await this.loginModal.callAllUserAPI();
+      this.goToHome();
+    } catch (error) {
+      this.showOffcanvas();
+      this.loading.hide();
+    }
   }
 
   private createVersionText(): void {

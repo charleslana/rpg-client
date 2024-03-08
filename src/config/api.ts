@@ -1,12 +1,12 @@
 import axios, { AxiosError } from 'axios';
-import { getToken, removeToken } from '../utils/localStorageUtils';
+import { getAccessToken, removeAccessToken } from '../utils/localStorageUtils';
 
 const api = axios.create({
   baseURL: process.env.API_URL,
 });
 
 api.interceptors.request.use(config => {
-  const token = getToken();
+  const token = getAccessToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -18,11 +18,15 @@ api.interceptors.response.use(
   (error: AxiosError) => {
     if (error.response) {
       if (error.response.status === 401 || error.response.status === 429) {
-        removeToken();
+        removeAccessToken();
         location.reload();
+        return;
       }
       if (error.response.status === 403 || error.response.status === 422) {
-        location.reload();
+        const url = error!.config!.url!;
+        if (!url.includes('user/auth')) {
+          location.reload();
+        }
       }
     }
     return Promise.reject(error);

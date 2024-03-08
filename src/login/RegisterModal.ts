@@ -1,8 +1,6 @@
 import * as Phaser from 'phaser';
-import ICelebrateError from '../interface/ICelebrateError';
-import IError from '../interface/IError';
 import UserService from '../service/UserService';
-import { AxiosError } from 'axios';
+import { getErrorMessage } from '../utils/utils';
 import { Loading } from '../components/Loading';
 
 export class RegisterModal extends Phaser.GameObjects.Container {
@@ -151,23 +149,10 @@ export class RegisterModal extends Phaser.GameObjects.Container {
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
     button.on(Phaser.Input.Events.POINTER_DOWN, () => {
-      // this.emitButton();
-      this.registerAPI();
+      this.callAPI();
     });
     return button;
   }
-
-  // private emitButton(): void {
-  //   // this.emit(this.event);
-  //   // this.modal.destroy();
-  //   this.hide();
-  //   this.loading.show();
-  //   this.scene.time.delayedCall(2000, () => {
-  //     this.loading.hide();
-  //     this.showErrorMessage('Ocorreu um erro, tente novamente');
-  //     this.show();
-  //   });
-  // }
 
   private createErrorMessage(): void {
     this.errorMessage = this.scene.add
@@ -180,30 +165,25 @@ export class RegisterModal extends Phaser.GameObjects.Container {
     this.hideErrorMessage();
   }
 
-  private async registerAPI(): Promise<void> {
+  private async callAPI(): Promise<void> {
     this.hide();
     this.hideErrorMessage();
     this.loading.show();
     try {
       await UserService.register({
-        email: (this.emailInput.node as HTMLInputElement).value,
-        password: (this.passwordInput.node as HTMLInputElement).value,
-        name: (this.nameInput.node as HTMLInputElement).value,
+        email: (this.emailInput.node as HTMLInputElement).value.trim(),
+        password: (this.passwordInput.node as HTMLInputElement).value.trim(),
+        name: (this.nameInput.node as HTMLInputElement).value.trim(),
       });
+      this.emit(this.event, [
+        (this.emailInput.node as HTMLInputElement).value.trim(),
+        (this.passwordInput.node as HTMLInputElement).value.trim(),
+      ]);
     } catch (err: unknown) {
-      this.loading.hide();
       this.show();
-      const error = err as AxiosError<ICelebrateError>;
-      if (error.response) {
-        if (error.response.data.validation) {
-          this.showErrorMessage(error.response.data.validation.body.message);
-          return;
-        }
-        const iError = err as AxiosError<IError>;
-        this.showErrorMessage(iError.response!.data.message);
-        return;
-      }
-      this.showErrorMessage('Ocorreu um erro, tente novamente');
+      this.showErrorMessage(getErrorMessage(err));
+    } finally {
+      this.loading.hide();
     }
   }
 }

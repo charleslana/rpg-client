@@ -1,5 +1,10 @@
 import * as Phaser from 'phaser';
+import UserService from '../service/UserService';
+import { getErrorMessage } from '../utils/utils';
 import { Loading } from '../components/Loading';
+import { saveAccessToken, saveRefreshToken } from '../utils/localStorageUtils';
+import { setUser } from '../store/userSlice';
+import { store } from '../store/store';
 
 export class LoginModal extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {
@@ -13,6 +18,9 @@ export class LoginModal extends Phaser.GameObjects.Container {
   private containerWidth = this.scene.cameras.main.width;
   private containerHeight = this.scene.cameras.main.height;
   private errorMessage: Phaser.GameObjects.Text;
+  private loading: Loading;
+  private emailInput: Phaser.GameObjects.DOMElement;
+  private passwordInput: Phaser.GameObjects.DOMElement;
 
   public show(): void {
     this.modal.setVisible(true);
@@ -31,11 +39,23 @@ export class LoginModal extends Phaser.GameObjects.Container {
     this.errorMessage.setVisible(false);
   }
 
+  public login(email: string, password: string): void {
+    (this.emailInput.node as HTMLInputElement).setAttribute('value', email);
+    (this.passwordInput.node as HTMLInputElement).setAttribute('value', password);
+    this.callAPI();
+  }
+
+  public async callAllUserAPI(): Promise<void> {
+    const response = await UserService.me();
+    store.dispatch(setUser(response));
+  }
+
   private createModal(): void {
+    this.loading = new Loading(this.scene);
     const text = this.createText();
     const closeButton = this.createCloseButton();
-    const emailInput = this.createEmailInput();
-    const passwordInput = this.createPasswordInput();
+    this.createEmailInput();
+    this.createPasswordInput();
     const button = this.createButton();
     const blockingRect = this.createBlocking();
     this.createErrorMessage();
@@ -45,8 +65,8 @@ export class LoginModal extends Phaser.GameObjects.Container {
       blockingRect,
       text,
       closeButton,
-      emailInput,
-      passwordInput,
+      this.emailInput,
+      this.passwordInput,
       button,
       this.errorMessage,
     ]);
@@ -96,28 +116,26 @@ export class LoginModal extends Phaser.GameObjects.Container {
     return closeButton;
   }
 
-  private createEmailInput(): Phaser.GameObjects.DOMElement {
-    const emailInput = this.scene.add.dom(
+  private createEmailInput(): void {
+    this.emailInput = this.scene.add.dom(
       this.containerWidth / 2,
       this.containerHeight / 2 - 50,
       'input',
       'width: 200px; height: 30px; padding: 5px; font-size: 16px; border: 1px solid #ccc; outline: none;'
     );
-    emailInput.node.setAttribute('type', 'email');
-    emailInput.node.setAttribute('placeholder', 'E-mail');
-    return emailInput;
+    this.emailInput.node.setAttribute('type', 'email');
+    this.emailInput.node.setAttribute('placeholder', 'E-mail');
   }
 
-  private createPasswordInput(): Phaser.GameObjects.DOMElement {
-    const passwordInput = this.scene.add.dom(
+  private createPasswordInput(): void {
+    this.passwordInput = this.scene.add.dom(
       this.containerWidth / 2,
       this.containerHeight / 2,
       'input',
       'width: 200px; height: 30px; padding: 5px; font-size: 16px; border: 1px solid #ccc; outline: none;'
     );
-    passwordInput.node.setAttribute('type', 'password');
-    passwordInput.node.setAttribute('placeholder', 'Senha');
-    return passwordInput;
+    this.passwordInput.node.setAttribute('type', 'password');
+    this.passwordInput.node.setAttribute('placeholder', 'Senha');
   }
 
   private createButton(): Phaser.GameObjects.Text {
@@ -132,22 +150,9 @@ export class LoginModal extends Phaser.GameObjects.Container {
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
     button.on(Phaser.Input.Events.POINTER_DOWN, () => {
-      this.emitButton();
+      this.callAPI();
     });
     return button;
-  }
-
-  private emitButton(): void {
-    // this.emit(this.event);
-    // this.modal.destroy();
-    this.hide();
-    const loading = new Loading(this.scene);
-    loading.show();
-    this.scene.time.delayedCall(2000, () => {
-      loading.hide();
-      this.showErrorMessage('Ocorreu um erro, tente novamente');
-      this.show();
-    });
   }
 
   private createErrorMessage(): void {
@@ -159,5 +164,26 @@ export class LoginModal extends Phaser.GameObjects.Container {
       })
       .setOrigin(0.5);
     this.hideErrorMessage();
+  }
+
+  private async callAPI(): Promise<void> {
+    this.hide();
+    this.hideErrorMessage();
+    this.loading.show();
+    try {
+      const response = await UserService.login({
+        email: (this.emailInput.node as HTMLInputElement).value.trim(),
+        password: (this.passwordInput.node as HTMLInputElement).value.trim(),
+      });
+      saveAccessToken(response.accessToken);
+      saveRefreshToken(response.refreshToken);
+      await this.callAllUserAPI();
+      this.emit(this.event);
+    } catch (err: unknown) {
+      this.show();
+      this.showErrorMessage(getErrorMessage(err));
+    } finally {
+      this.loading.hide();
+    }
   }
 }
