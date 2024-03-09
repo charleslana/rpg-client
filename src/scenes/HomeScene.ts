@@ -1,5 +1,7 @@
 import * as Phaser from 'phaser';
 import { clearUser } from '../store/userSlice';
+import { clearUserCharacters } from '../store/userCharactersSlice';
+import { IUserCharacter } from '../interface/IUserCharacter';
 import { removeAccessToken } from '../utils/localStorageUtils';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 import { store } from '../store/store';
@@ -11,9 +13,11 @@ export class HomeScene extends Phaser.Scene {
   }
 
   private currentUser: UserMe | null;
+  private userCharacters: IUserCharacter[];
 
   init(): void {
     this.currentUser = store.getState().user.currentUser;
+    this.userCharacters = store.getState().userCharacters.userCharacters;
   }
 
   create(): void {
@@ -30,7 +34,7 @@ export class HomeScene extends Phaser.Scene {
     this.add.text(
       100,
       100,
-      `Cena 1 - Clique no botão para ir para a próxima cena\nUsuário logado: ${this.currentUser?.name}`,
+      `Usuário logado: ${this.currentUser?.name}\nQuantidade de personagens: ${this.userCharacters.length}`,
       {
         backgroundColor: '#ffffff',
         color: '#000000',
@@ -71,6 +75,7 @@ export class HomeScene extends Phaser.Scene {
 
   private logout(): void {
     store.dispatch(clearUser());
+    store.dispatch(clearUserCharacters());
     removeAccessToken();
     this.scene.start(SceneKeyEnum.LoginSceneKey);
   }

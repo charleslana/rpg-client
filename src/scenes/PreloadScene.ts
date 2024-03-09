@@ -131,6 +131,7 @@ export class PreloadScene extends Phaser.Scene {
     }
     this.load.json(AssetKeysEnum.En, './assets/i18n/en.json');
     this.load.json(AssetKeysEnum.Pt, './assets/i18n/pt.json');
+    this.load.json(AssetKeysEnum.Es, './assets/i18n/es.json');
   }
 
   private loadLogin(): void {

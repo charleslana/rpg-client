@@ -6,7 +6,8 @@ export class I18nUtils {
   private static currentLanguage: string = AssetKeysEnum.En;
 
   public static setLanguage(language: string): void {
-    if (language === AssetKeysEnum.Pt || language === AssetKeysEnum.En) {
+    const validLanguages: string[] = [AssetKeysEnum.Pt, AssetKeysEnum.En, AssetKeysEnum.Es];
+    if (validLanguages.includes(language)) {
       this.currentLanguage = language;
     } else {
       this.currentLanguage = AssetKeysEnum.En;

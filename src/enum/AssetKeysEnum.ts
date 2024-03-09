@@ -16,4 +16,5 @@ export enum AssetKeysEnum {
   Loading = 'Loading',
   Pt = 'pt',
   En = 'en',
+  Es = 'es',
 }

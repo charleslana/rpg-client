@@ -1,9 +1,11 @@
 import * as Phaser from 'phaser';
+import UserCharacterService from '../service/UserCharacterService';
 import UserService from '../service/UserService';
 import { getErrorMessage } from '../utils/utils';
 import { Loading } from '../components/Loading';
 import { saveAccessToken, saveRefreshToken } from '../utils/localStorageUtils';
 import { setUser } from '../store/userSlice';
+import { setUserCharacters } from '../store/userCharactersSlice';
 import { store } from '../store/store';
 
 export class LoginModal extends Phaser.GameObjects.Container {
@@ -46,8 +48,10 @@ export class LoginModal extends Phaser.GameObjects.Container {
   }
 
   public async callAllUserAPI(): Promise<void> {
-    const response = await UserService.me();
-    store.dispatch(setUser(response));
+    const getMe = await UserService.me();
+    store.dispatch(setUser(getMe));
+    const userCharacters = await UserCharacterService.getAll();
+    store.dispatch(setUserCharacters(userCharacters));
   }
 
   private createModal(): void {
