@@ -1,9 +1,12 @@
 import * as Phaser from 'phaser';
+// import GlobalError from '../shared/GlobalError';
+// import PublicService from '../service/PublicService';
 import { AssetKeysEnum } from '../enum/AssetKeysEnum';
+import { getErrorMessage, showInfoBlocked } from '../utils/utils';
 import { I18nUtils } from '../utils/I18nUtils';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
-export class PreloadScene extends Phaser.Scene {
+export class AssetScene extends Phaser.Scene {
   private progressBar: Phaser.GameObjects.Graphics;
   private progressBox: Phaser.GameObjects.Graphics;
   private loadingText: Phaser.GameObjects.Text;
@@ -11,7 +14,7 @@ export class PreloadScene extends Phaser.Scene {
   private assetText: Phaser.GameObjects.Text;
 
   constructor() {
-    super({ key: SceneKeyEnum.PreloadSceneKey });
+    super({ key: SceneKeyEnum.AssetSceneKey });
   }
 
   preload(): void {
@@ -41,7 +44,7 @@ export class PreloadScene extends Phaser.Scene {
     this.loadingText = this.make.text({
       x: width / 2,
       y: height / 2 - 50,
-      text: 'Loading...',
+      text: I18nUtils.getTranslation(this, 'loading'),
       style: {
         font: '20px monospace',
         color: '#ffffff',
@@ -100,20 +103,24 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   private handleLoadEvent(file: Phaser.Loader.File): void {
-    this.assetText.setText('Loading asset: ' + file.key);
+    this.assetText.setText(I18nUtils.getTranslation(this, 'loadingAsset', { asset: file.key }));
   }
 
-  private handleCompleteEvent(): void {
-    this.progressBar.destroy();
-    this.progressBox.destroy();
-    this.loadingText.destroy();
-    this.percentText.destroy();
-    this.assetText.destroy();
-    this.scene.start(SceneKeyEnum.LoginSceneKey);
+  private async handleCompleteEvent(): Promise<void> {
+    try {
+      await this.checkVersion();
+      this.progressBar.destroy();
+      this.progressBox.destroy();
+      this.loadingText.destroy();
+      this.percentText.destroy();
+      this.assetText.destroy();
+      this.scene.start(SceneKeyEnum.LoginSceneKey);
+    } catch (error) {
+      showInfoBlocked(getErrorMessage(error));
+    }
   }
 
   private loadAssets(): void {
-    this.loadI18n();
     this.loadBattleBackground();
     this.loadIcons();
     this.loadFireKnight();
@@ -122,16 +129,11 @@ export class PreloadScene extends Phaser.Scene {
     this.loadLogin();
   }
 
-  private loadI18n(): void {
-    const language = I18nUtils.get();
-    if (language) {
-      I18nUtils.setLanguage(language);
-    } else {
-      I18nUtils.setLanguage(navigator.language.split('-')[0]);
-    }
-    this.load.json(AssetKeysEnum.En, './assets/i18n/en.json');
-    this.load.json(AssetKeysEnum.Pt, './assets/i18n/pt.json');
-    this.load.json(AssetKeysEnum.Es, './assets/i18n/es.json');
+  private async checkVersion(): Promise<void> {
+    // const version = await PublicService.getVersion();
+    // if (version != process.env.npm_package_version) {
+    //   throw new GlobalError(I18nUtils.getTranslation(this, 'outdatedVersion'));
+    // }
   }
 
   private loadLogin(): void {

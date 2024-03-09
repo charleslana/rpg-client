@@ -1,5 +1,6 @@
 import GlobalError from '../shared/GlobalError';
 import IError from '../interface/IError';
+import Swal from 'sweetalert2';
 import { AxiosError } from 'axios';
 
 export function isValidEmail(email: string): boolean {
@@ -27,4 +28,22 @@ export function getErrorMessage(err: unknown): string {
     return err.message;
   }
   return 'Ocorreu um erro, tente novamente';
+}
+
+export function showInfo(message: string): void {
+  Swal.fire({
+    text: message,
+    icon: 'info',
+    confirmButtonText: 'Ok',
+  });
+}
+
+export function showInfoBlocked(message: string): void {
+  Swal.fire({
+    text: message,
+    icon: 'info',
+    showConfirmButton: false,
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+  });
 }

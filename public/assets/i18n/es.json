@@ -1,5 +1,8 @@
 {
   "logoName": "Héroes del Viaje",
   "tapToStart": "Toca para comenzar",
-  "createBy": "Hecho por {{name}}"
+  "createBy": "Hecho por {{name}}",
+  "loading": "Cargando...",
+  "loadingAsset": "Cargando activo: {{asset}}",
+  "outdatedVersion": "Su versión no está actualizada, actualice la aplicación"
 }

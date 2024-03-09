@@ -1,5 +1,8 @@
 {
   "logoName": "Heróis da Jornada",
   "tapToStart": "Toque para começar",
-  "createBy": "Feito por {{name}}"
+  "createBy": "Feito por {{name}}",
+  "loading": "Carregando...",
+  "loadingAsset": "Carregando ativo: {{asset}}",
+  "outdatedVersion": "Sua versão está desatualizada, por favor atualize a aplicação"
 }

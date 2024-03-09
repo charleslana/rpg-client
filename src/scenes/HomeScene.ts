@@ -2,7 +2,7 @@ import * as Phaser from 'phaser';
 import { clearUser } from '../store/userSlice';
 import { clearUserCharacters } from '../store/userCharactersSlice';
 import { IUserCharacter } from '../interface/IUserCharacter';
-import { removeAccessToken } from '../utils/localStorageUtils';
+import { removeAccessToken, removeRefreshToken } from '../utils/localStorageUtils';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 import { store } from '../store/store';
 import { UserMe } from '../interface/IUser';
@@ -78,6 +78,7 @@ export class HomeScene extends Phaser.Scene {
     store.dispatch(clearUserCharacters());
     removeAccessToken();
     this.scene.start(SceneKeyEnum.LoginSceneKey);
+    removeRefreshToken();
   }
 
   private goToBattleScene(): void {

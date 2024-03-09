@@ -1,5 +1,8 @@
 {
   "logoName": "Heroes of the Journey",
   "tapToStart": "Tap to start",
-  "createBy": "Made by {{name}}"
+  "createBy": "Made by {{name}}",
+  "loading": "Loading...",
+  "loadingAsset": "Loading asset: {{asset}}",
+  "outdatedVersion": "Your version is out of date, please update the application"
 }

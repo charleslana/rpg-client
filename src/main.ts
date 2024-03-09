@@ -1,9 +1,10 @@
 import * as Phaser from 'phaser';
+import { AssetScene } from './scenes/AssetScene';
 import { BattleScene } from './scenes/BattleScene';
 import { Game, Types } from 'phaser';
 import { HomeScene } from './scenes/HomeScene';
+import { InitScene } from './scenes/InitScene';
 import { LoginScene } from './scenes/LoginScene';
-import { PreloadScene } from './scenes/PreloadScene';
 
 const config: Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -29,7 +30,7 @@ const config: Types.Core.GameConfig = {
   audio: {
     disableWebAudio: true,
   },
-  scene: [PreloadScene, LoginScene, HomeScene, BattleScene],
+  scene: [InitScene, AssetScene, LoginScene, HomeScene, BattleScene],
 };
 
 export default new Game(config);
