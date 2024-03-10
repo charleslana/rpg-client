@@ -25,7 +25,7 @@ export class I18nUtils {
     placeholders?: { [key: string]: string }
   ): string {
     const translations = scene.cache.json.get(this.currentLanguage);
-    let translation = translations[key] || `Translation missing for key: ${key}`;
+    let translation = translations[key] || `NO_TRANSLATION_${key}`;
     if (placeholders) {
       for (const placeholderKey in placeholders) {
         if (Object.hasOwnProperty.call(placeholders, placeholderKey)) {
