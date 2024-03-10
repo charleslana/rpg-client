@@ -1,24 +1,29 @@
 import * as Phaser from 'phaser';
-// import GlobalError from '../shared/GlobalError';
-// import PublicService from '../service/PublicService';
+import GlobalError from '../shared/GlobalError';
+import PublicService from '../service/PublicService';
 import { AssetKeysEnum } from '../enum/AssetKeysEnum';
-import { getErrorMessage, showInfoBlocked } from '../utils/utils';
+import { getErrorMessage } from '../utils/utils';
 import { I18nUtils } from '../utils/I18nUtils';
 import { SceneKeyEnum } from '../enum/SceneKeyEnum';
 
 export class AssetScene extends Phaser.Scene {
+  constructor() {
+    super({ key: SceneKeyEnum.AssetSceneKey });
+  }
+
   private progressBar: Phaser.GameObjects.Graphics;
   private progressBox: Phaser.GameObjects.Graphics;
   private loadingText: Phaser.GameObjects.Text;
   private percentText: Phaser.GameObjects.Text;
   private assetText: Phaser.GameObjects.Text;
-
-  constructor() {
-    super({ key: SceneKeyEnum.AssetSceneKey });
-  }
+  private modal: Phaser.GameObjects.Container;
+  private containerWidth: number;
+  private containerHeight: number;
+  private text: Phaser.GameObjects.Text;
 
   preload(): void {
     this.cameras.main.setBackgroundColor('#000000');
+    this.createModal();
     this.createProgressBar();
     this.createLoadingText();
     this.createPercentText();
@@ -116,7 +121,8 @@ export class AssetScene extends Phaser.Scene {
       this.assetText.destroy();
       this.scene.start(SceneKeyEnum.LoginSceneKey);
     } catch (error) {
-      showInfoBlocked(getErrorMessage(error));
+      this.text.setText(getErrorMessage(error));
+      this.show();
     }
   }
 
@@ -130,10 +136,55 @@ export class AssetScene extends Phaser.Scene {
   }
 
   private async checkVersion(): Promise<void> {
-    // const version = await PublicService.getVersion();
-    // if (version != process.env.npm_package_version) {
-    //   throw new GlobalError(I18nUtils.getTranslation(this, 'outdatedVersion'));
-    // }
+    const version = await PublicService.getVersion();
+    if (version != process.env.npm_package_version) {
+      throw new GlobalError(I18nUtils.getTranslation(this, 'outdatedVersion'));
+    }
+  }
+
+  private createModal(): void {
+    this.containerWidth = this.cameras.main.width;
+    this.containerHeight = this.cameras.main.height;
+    this.modal = this.add.container(0, 0);
+    this.modal.setDepth(999);
+    const blockingRect = this.createBlocking();
+    this.createText();
+    this.modal.add([blockingRect, this.text]);
+    this.hide();
+  }
+
+  private createBlocking(): Phaser.GameObjects.Rectangle {
+    const blockingRect = this.add.rectangle(
+      0,
+      0,
+      this.containerWidth,
+      this.containerHeight,
+      0xffffff,
+      1
+    );
+    blockingRect.setOrigin(0);
+    blockingRect.setInteractive();
+    blockingRect.setDepth(1000);
+    blockingRect.on(Phaser.Input.Events.POINTER_DOWN, () => {});
+    return blockingRect;
+  }
+
+  private createText(): void {
+    this.text = this.add
+      .text(this.containerWidth / 2, this.containerHeight / 2, '...', {
+        fontFamily: 'DINAlternateBold',
+        fontSize: '32px',
+        color: '#ff0000',
+      })
+      .setOrigin(0.5);
+  }
+
+  public show(): void {
+    this.modal.setVisible(true);
+  }
+
+  public hide(): void {
+    this.modal.setVisible(false);
   }
 
   private loadLogin(): void {
