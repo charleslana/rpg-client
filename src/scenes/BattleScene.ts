@@ -1,14 +1,14 @@
 import * as Phaser from 'phaser';
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
-import { BattleReport } from '../battle/BattleReport';
-import { Character } from '../components/Character';
-import { CharacterSkillEnum } from '../enum/CharacterSkillEnum';
-import { FinalDialog } from '../battle/FinalDialog';
-import { IReportLog, ITo } from '../interface/IReportLog';
-import { report } from '../data/report';
-import { SceneKeyEnum } from '../enum/SceneKeyEnum';
-import { Slot } from '../battle/Slot';
-import { SpeedButton } from '../battle/SpeedButton';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
+import { BattleReport } from '@modules/battle/BattleReport';
+import { Character } from '@components/Character';
+import { CharacterSkillEnum } from '@enum/CharacterSkillEnum';
+import { FinalDialog } from '@modules/battle/FinalDialog';
+import { IReportLog, ITo } from '@interface/IReportLog';
+import { report } from '@data/report';
+import { SceneKeyEnum } from '@enum/SceneKeyEnum';
+import { Slot } from '@modules/battle/Slot';
+import { SpeedButton } from '@modules/battle/SpeedButton';
 
 export class BattleScene extends Phaser.Scene {
   constructor() {

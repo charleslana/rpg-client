@@ -1,5 +1,5 @@
-import { characterFireKnight, characterMage, characterRanger } from '../data/charactersAnimation';
-import { ICharacterAnimation } from '../interface/ICharacterAnimation';
+import { characterFireKnight, characterMage, characterRanger } from '@data/charactersAnimation';
+import { ICharacterAnimation } from '@interface/ICharacterAnimation';
 
 export function getCharacterAnimation(characterId: number): ICharacterAnimation {
   switch (characterId) {

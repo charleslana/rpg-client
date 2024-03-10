@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
 import { getLanguage, saveLanguage } from './localStorageUtils';
 
 export class I18nUtils {

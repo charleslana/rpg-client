@@ -1,6 +1,6 @@
-import { ICharacterModel } from '../interface/ICharacterModel';
-import { IFrom, IReportLog, ITo } from '../interface/IReportLog';
-import { IReport } from '../interface/IReport';
+import { ICharacterModel } from '@interface/ICharacterModel';
+import { IFrom, IReportLog, ITo } from '@interface/IReportLog';
+import { IReport } from '@interface/IReport';
 
 export class BattleReport {
   private report: IReport;

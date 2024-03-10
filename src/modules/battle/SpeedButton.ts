@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { getSpeed, saveSpeed } from '../utils/localStorageUtils';
+import { getSpeed, saveSpeed } from '@utils/localStorageUtils';
 
 export class SpeedButton extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {

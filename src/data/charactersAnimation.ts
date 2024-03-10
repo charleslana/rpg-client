@@ -1,5 +1,5 @@
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
-import { ICharacterAnimation } from '../interface/ICharacterAnimation';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
+import { ICharacterAnimation } from '@interface/ICharacterAnimation';
 
 export const characterFireKnight: ICharacterAnimation = {
   scaleX: 2,

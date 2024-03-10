@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { getAccessToken, removeAccessToken } from '../utils/localStorageUtils';
+import { getAccessToken, removeAccessToken } from '@utils/localStorageUtils';
 
 const api = axios.create({
   baseURL: process.env.API_URL,

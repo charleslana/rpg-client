@@ -1,6 +1,6 @@
 import * as Phaser from 'phaser';
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
-import { ICharacterAnimation } from '../interface/ICharacterAnimation';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
+import { ICharacterAnimation } from '@interface/ICharacterAnimation';
 
 export class Shadow extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Phaser.Scene, x: number, y: number) {

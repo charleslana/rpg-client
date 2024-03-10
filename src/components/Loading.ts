@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser';
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
 
 export class Loading extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {

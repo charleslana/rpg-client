@@ -1,7 +1,8 @@
 import * as Phaser from 'phaser';
-import UserService from '../service/UserService';
-import { getErrorMessage } from '../utils/utils';
-import { Loading } from '../components/Loading';
+import UserService from '@service/UserService';
+import { getErrorMessage } from '@utils/utils';
+import { I18nUtils } from '@utils/I18nUtils';
+import { Loading } from '@components/Loading';
 
 export class RegisterModal extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {
@@ -80,11 +81,16 @@ export class RegisterModal extends Phaser.GameObjects.Container {
 
   private createText(): Phaser.GameObjects.Text {
     const text = this.scene.add
-      .text(this.containerWidth / 2, this.containerHeight / 2 - 200, 'Registrar', {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '32px',
-        color: '#000000',
-      })
+      .text(
+        this.containerWidth / 2,
+        this.containerHeight / 2 - 200,
+        I18nUtils.getTranslation(this.scene, 'registerTitle'),
+        {
+          fontFamily: 'DINAlternateBold',
+          fontSize: '32px',
+          color: '#000000',
+        }
+      )
       .setOrigin(0.5);
     return text;
   }
@@ -113,7 +119,10 @@ export class RegisterModal extends Phaser.GameObjects.Container {
       'width: 200px; height: 30px; padding: 5px; font-size: 16px; border: 1px solid #ccc; outline: none;'
     );
     this.emailInput.node.setAttribute('type', 'email');
-    this.emailInput.node.setAttribute('placeholder', 'E-mail');
+    this.emailInput.node.setAttribute(
+      'placeholder',
+      I18nUtils.getTranslation(this.scene, 'inputEmail')
+    );
   }
 
   private createPasswordInput(): void {
@@ -124,7 +133,10 @@ export class RegisterModal extends Phaser.GameObjects.Container {
       'width: 200px; height: 30px; padding: 5px; font-size: 16px; border: 1px solid #ccc; outline: none;'
     );
     this.passwordInput.node.setAttribute('type', 'password');
-    this.passwordInput.node.setAttribute('placeholder', 'Senha');
+    this.passwordInput.node.setAttribute(
+      'placeholder',
+      I18nUtils.getTranslation(this.scene, 'inputPassword')
+    );
   }
 
   private createNameInput(): void {
@@ -134,18 +146,26 @@ export class RegisterModal extends Phaser.GameObjects.Container {
       'input',
       'width: 200px; height: 30px; padding: 5px; font-size: 16px; border: 1px solid #ccc; outline: none;'
     );
-    this.nameInput.node.setAttribute('placeholder', 'Nome');
+    this.nameInput.node.setAttribute(
+      'placeholder',
+      I18nUtils.getTranslation(this.scene, 'inputName')
+    );
   }
 
   private createButton(): Phaser.GameObjects.Text {
     const button = this.scene.add
-      .text(this.containerWidth / 2, this.containerHeight / 2 + 50, 'Cadastrar', {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '24px',
-        color: '#ffffff',
-        backgroundColor: '#19c37d',
-        padding: { left: 10, right: 10, top: 5, bottom: 5 },
-      })
+      .text(
+        this.containerWidth / 2,
+        this.containerHeight / 2 + 50,
+        I18nUtils.getTranslation(this.scene, 'registerButton'),
+        {
+          fontFamily: 'DINAlternateBold',
+          fontSize: '24px',
+          color: '#ffffff',
+          backgroundColor: '#19c37d',
+          padding: { left: 10, right: 10, top: 5, bottom: 5 },
+        }
+      )
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
     button.on(Phaser.Input.Events.POINTER_DOWN, () => {

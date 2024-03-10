@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IUserCharacter } from '../interface/IUserCharacter';
+import { IUserCharacter } from '@interface/IUserCharacter';
 
 interface UserCharacterState {
   userCharacters: IUserCharacter[];

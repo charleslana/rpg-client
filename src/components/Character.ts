@@ -1,9 +1,9 @@
 import * as Phaser from 'phaser';
 import { Damage } from './Damage';
-import { getCharacterAnimation } from '../utils/characterUtils';
-import { IAnimation } from '../interface/IAnimation';
-import { IBattleCharacter } from '../interface/IBattleCharacter';
-import { ICharacterAnimation } from '../interface/ICharacterAnimation';
+import { getCharacterAnimation } from '@utils/characterUtils';
+import { IAnimation } from '@interface/IAnimation';
+import { IBattleCharacter } from '@interface/IBattleCharacter';
+import { ICharacterAnimation } from '@interface/ICharacterAnimation';
 import { Shadow } from './Shadow';
 import { StatusBar } from './StatusBar';
 

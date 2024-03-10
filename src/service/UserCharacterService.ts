@@ -1,5 +1,5 @@
-import api from '../config/api';
-import { IUserCharacter } from '../interface/IUserCharacter';
+import api from '@config/api';
+import { IUserCharacter } from '@interface/IUserCharacter';
 
 export default class UserCharacterService {
   private static baseUrl = '/v1/user-character';

@@ -4,5 +4,14 @@
   "createBy": "Feito por {{name}}",
   "loading": "Carregando...",
   "loadingAsset": "Carregando ativo: {{asset}}",
-  "outdatedVersion": "Sua versão está desatualizada, por favor atualize a aplicação"
+  "outdatedVersion": "Sua versão está desatualizada, por favor atualize a aplicação",
+  "newLogin": "Já tenho conta",
+  "newRegister": "É a primeira vez aqui",
+  "loginTitle": "Login",
+  "inputEmail": "E-mail",
+  "inputPassword": "Senha",
+  "loginButton": "Entrar",
+  "registerTitle": "Registrar",
+  "inputName": "Nome",
+  "registerButton": "Cadastrar"
 }

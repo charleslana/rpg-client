@@ -1,9 +1,9 @@
-import api from '../config/api';
-import GlobalError from '../shared/GlobalError';
-import IResponse from '../interface/IResponse';
-import { getRefreshToken } from '../utils/localStorageUtils';
-import { ICreateUser, ILogin, IToken, UserMe } from '../interface/IUser';
-import { isValidEmail, isValidName } from '../utils/utils';
+import api from '@config/api';
+import GlobalError from '@shared/GlobalError';
+import IResponse from '@interface/IResponse';
+import { getRefreshToken } from '@utils/localStorageUtils';
+import { ICreateUser, ILogin, IToken, UserMe } from '@interface/IUser';
+import { isValidEmail, isValidName } from '@utils/utils';
 
 export default class UserService {
   private static baseUrl = '/v1/user';

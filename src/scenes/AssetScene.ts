@@ -1,10 +1,10 @@
 import * as Phaser from 'phaser';
-import GlobalError from '../shared/GlobalError';
-import PublicService from '../service/PublicService';
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
-import { getErrorMessage } from '../utils/utils';
-import { I18nUtils } from '../utils/I18nUtils';
-import { SceneKeyEnum } from '../enum/SceneKeyEnum';
+import GlobalError from '@shared/GlobalError';
+import PublicService from '@service/PublicService';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
+import { getErrorMessage } from '@utils/utils';
+import { I18nUtils } from '@utils/I18nUtils';
+import { SceneKeyEnum } from '@enum/SceneKeyEnum';
 
 export class AssetScene extends Phaser.Scene {
   constructor() {

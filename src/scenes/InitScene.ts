@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
-import { I18nUtils } from '../utils/I18nUtils';
-import { SceneKeyEnum } from '../enum/SceneKeyEnum';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
+import { I18nUtils } from '@utils/I18nUtils';
+import { SceneKeyEnum } from '@enum/SceneKeyEnum';
 
 export class InitScene extends Phaser.Scene {
   constructor() {

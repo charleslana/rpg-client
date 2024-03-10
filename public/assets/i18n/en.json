@@ -4,5 +4,14 @@
   "createBy": "Made by {{name}}",
   "loading": "Loading...",
   "loadingAsset": "Loading asset: {{asset}}",
-  "outdatedVersion": "Your version is out of date, please update the application"
+  "outdatedVersion": "Your version is out of date, please update the application",
+  "newLogin": "I already have an account",
+  "newRegister": "It's the first time here",
+  "loginTitle": "Login",
+  "inputEmail": "Email",
+  "inputPassword": "Password",
+  "loginButton": "Login",
+  "registerTitle": "Register",
+  "inputName": "Name",
+  "registerButton": "Register"
 }

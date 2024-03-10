@@ -1,10 +1,10 @@
 import * as Phaser from 'phaser';
-import { AssetScene } from './scenes/AssetScene';
-import { BattleScene } from './scenes/BattleScene';
+import { AssetScene } from '@scenes/AssetScene';
+import { BattleScene } from '@scenes/BattleScene';
 import { Game, Types } from 'phaser';
-import { HomeScene } from './scenes/HomeScene';
-import { InitScene } from './scenes/InitScene';
-import { LoginScene } from './scenes/LoginScene';
+import { HomeScene } from '@scenes/HomeScene';
+import { InitScene } from '@scenes/InitScene';
+import { LoginScene } from '@scenes/LoginScene';
 
 const config: Types.Core.GameConfig = {
   type: Phaser.AUTO,

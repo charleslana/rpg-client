@@ -1,4 +1,4 @@
-import api from '../config/api';
+import api from '@config/api';
 
 export default class PublicService {
   private static baseUrl = '/v1/public';

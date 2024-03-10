@@ -1,4 +1,4 @@
-import { CharacterSkillEnum } from '../enum/CharacterSkillEnum';
+import { CharacterSkillEnum } from '@enum/CharacterSkillEnum';
 
 export interface ICharacter {
   id: number;

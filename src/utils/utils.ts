@@ -1,5 +1,5 @@
-import GlobalError from '../shared/GlobalError';
-import IError from '../interface/IError';
+import GlobalError from '@shared/GlobalError';
+import IError from '@interface/IError';
 import { AxiosError } from 'axios';
 
 export function isValidEmail(email: string): boolean {

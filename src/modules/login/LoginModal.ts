@@ -1,12 +1,13 @@
 import * as Phaser from 'phaser';
-import UserCharacterService from '../service/UserCharacterService';
-import UserService from '../service/UserService';
-import { getErrorMessage } from '../utils/utils';
-import { Loading } from '../components/Loading';
-import { saveAccessToken, saveRefreshToken } from '../utils/localStorageUtils';
-import { setUser } from '../store/userSlice';
-import { setUserCharacters } from '../store/userCharactersSlice';
-import { store } from '../store/store';
+import UserCharacterService from '@service/UserCharacterService';
+import UserService from '@service/UserService';
+import { getErrorMessage } from '@utils/utils';
+import { I18nUtils } from '@utils/I18nUtils';
+import { Loading } from '@components/Loading';
+import { saveAccessToken, saveRefreshToken } from '@utils/localStorageUtils';
+import { setUser } from '@store/userSlice';
+import { setUserCharacters } from '@store/userCharactersSlice';
+import { store } from '@store/store';
 
 export class LoginModal extends Phaser.GameObjects.Container {
   constructor(scene: Phaser.Scene) {
@@ -95,11 +96,16 @@ export class LoginModal extends Phaser.GameObjects.Container {
 
   private createText(): Phaser.GameObjects.Text {
     const text = this.scene.add
-      .text(this.containerWidth / 2, this.containerHeight / 2 - 200, 'Login', {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '32px',
-        color: '#000000',
-      })
+      .text(
+        this.containerWidth / 2,
+        this.containerHeight / 2 - 200,
+        I18nUtils.getTranslation(this.scene, 'loginTitle'),
+        {
+          fontFamily: 'DINAlternateBold',
+          fontSize: '32px',
+          color: '#000000',
+        }
+      )
       .setOrigin(0.5);
     return text;
   }
@@ -128,7 +134,10 @@ export class LoginModal extends Phaser.GameObjects.Container {
       'width: 200px; height: 30px; padding: 5px; font-size: 16px; border: 1px solid #ccc; outline: none;'
     );
     this.emailInput.node.setAttribute('type', 'email');
-    this.emailInput.node.setAttribute('placeholder', 'E-mail');
+    this.emailInput.node.setAttribute(
+      'placeholder',
+      I18nUtils.getTranslation(this.scene, 'inputEmail')
+    );
   }
 
   private createPasswordInput(): void {
@@ -139,18 +148,26 @@ export class LoginModal extends Phaser.GameObjects.Container {
       'width: 200px; height: 30px; padding: 5px; font-size: 16px; border: 1px solid #ccc; outline: none;'
     );
     this.passwordInput.node.setAttribute('type', 'password');
-    this.passwordInput.node.setAttribute('placeholder', 'Senha');
+    this.passwordInput.node.setAttribute(
+      'placeholder',
+      I18nUtils.getTranslation(this.scene, 'inputPassword')
+    );
   }
 
   private createButton(): Phaser.GameObjects.Text {
     const button = this.scene.add
-      .text(this.containerWidth / 2, this.containerHeight / 2 + 50, 'Entrar', {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '24px',
-        color: '#ffffff',
-        backgroundColor: '#19c37d',
-        padding: { left: 10, right: 10, top: 5, bottom: 5 },
-      })
+      .text(
+        this.containerWidth / 2,
+        this.containerHeight / 2 + 50,
+        I18nUtils.getTranslation(this.scene, 'loginButton'),
+        {
+          fontFamily: 'DINAlternateBold',
+          fontSize: '24px',
+          color: '#ffffff',
+          backgroundColor: '#19c37d',
+          padding: { left: 10, right: 10, top: 5, bottom: 5 },
+        }
+      )
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
     button.on(Phaser.Input.Events.POINTER_DOWN, () => {

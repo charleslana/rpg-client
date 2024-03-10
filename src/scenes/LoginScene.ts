@@ -1,13 +1,13 @@
 import * as Phaser from 'phaser';
-import UserService from '../service/UserService';
-import { AssetKeysEnum } from '../enum/AssetKeysEnum';
-import { Character } from '../components/Character';
-import { I18nUtils } from '../utils/I18nUtils';
-import { isAuthenticated, saveAccessToken } from '../utils/localStorageUtils';
-import { Loading } from '../components/Loading';
-import { LoginModal } from '../login/LoginModal';
-import { RegisterModal } from '../login/RegisterModal';
-import { SceneKeyEnum } from '../enum/SceneKeyEnum';
+import UserService from '@service/UserService';
+import { AssetKeysEnum } from '@enum/AssetKeysEnum';
+import { Character } from '@components/Character';
+import { I18nUtils } from '@utils/I18nUtils';
+import { isAuthenticated, saveAccessToken } from '@utils/localStorageUtils';
+import { Loading } from '@components/Loading';
+import { LoginModal } from '@modules/login/LoginModal';
+import { RegisterModal } from '@modules/login/RegisterModal';
+import { SceneKeyEnum } from '@enum/SceneKeyEnum';
 
 export class LoginScene extends Phaser.Scene {
   constructor() {
@@ -180,11 +180,16 @@ export class LoginScene extends Phaser.Scene {
 
   private createLoginButton(): Phaser.GameObjects.Text {
     const button = this.add
-      .text(this.containerWidth / 2 - 220, this.containerHeight * 0.75, 'Já tenho conta', {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '24px',
-        color: '#000000',
-      })
+      .text(
+        this.containerWidth / 2 - 220,
+        this.containerHeight * 0.75,
+        I18nUtils.getTranslation(this, 'newLogin'),
+        {
+          fontFamily: 'DINAlternateBold',
+          fontSize: '24px',
+          color: '#000000',
+        }
+      )
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
     button.on(Phaser.Input.Events.POINTER_DOWN, () => {
@@ -195,13 +200,18 @@ export class LoginScene extends Phaser.Scene {
 
   private createRegisterButton(): Phaser.GameObjects.Text {
     const button = this.add
-      .text(this.containerWidth / 2 + 220, this.containerHeight * 0.75, 'É a primeira vez aqui', {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '24px',
-        color: '#ffffff',
-        backgroundColor: '#007bff',
-        padding: { left: 10, right: 10, top: 5, bottom: 5 },
-      })
+      .text(
+        this.containerWidth / 2 + 220,
+        this.containerHeight * 0.75,
+        I18nUtils.getTranslation(this, 'newRegister'),
+        {
+          fontFamily: 'DINAlternateBold',
+          fontSize: '24px',
+          color: '#ffffff',
+          backgroundColor: '#007bff',
+          padding: { left: 10, right: 10, top: 5, bottom: 5 },
+        }
+      )
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
     button.on(Phaser.Input.Events.POINTER_DOWN, () => {

@@ -19,6 +19,19 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
+    alias: {
+      '@components': path.resolve(__dirname, '..', 'src', 'components'),
+      '@config': path.resolve(__dirname, '..', 'src', 'config'),
+      '@data': path.resolve(__dirname, '..', 'src', 'data'),
+      '@enum': path.resolve(__dirname, '..', 'src', 'enum'),
+      '@interface': path.resolve(__dirname, '..', 'src', 'interface'),
+      '@modules': path.resolve(__dirname, '..', 'src', 'modules'),
+      '@scenes': path.resolve(__dirname, '..', 'src', 'scenes'),
+      '@service': path.resolve(__dirname, '..', 'src', 'service'),
+      '@shared': path.resolve(__dirname, '..', 'src', 'shared'),
+      '@store': path.resolve(__dirname, '..', 'src', 'store'),
+      '@utils': path.resolve(__dirname, '..', 'src', 'utils'),
+    },
   },
   devtool: false,
   performance: {

@@ -1,5 +1,5 @@
-import { CharacterSkillEnum } from '../enum/CharacterSkillEnum';
-import { IReport } from '../interface/IReport';
+import { CharacterSkillEnum } from '@enum/CharacterSkillEnum';
+import { IReport } from '@interface/IReport';
 
 export const report: IReport = {
   players: [
