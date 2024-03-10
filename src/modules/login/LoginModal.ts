@@ -99,7 +99,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
       .text(
         this.containerWidth / 2,
         this.containerHeight / 2 - 200,
-        I18nUtils.getTranslation(this.scene, 'loginTitle'),
+        I18nUtils.getTranslation(this.scene, 'LOGIN_TITLE'),
         {
           fontFamily: 'DINAlternateBold',
           fontSize: '32px',
@@ -136,7 +136,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
     this.emailInput.node.setAttribute('type', 'email');
     this.emailInput.node.setAttribute(
       'placeholder',
-      I18nUtils.getTranslation(this.scene, 'inputEmail')
+      I18nUtils.getTranslation(this.scene, 'INPUT_EMAIL')
     );
   }
 
@@ -150,7 +150,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
     this.passwordInput.node.setAttribute('type', 'password');
     this.passwordInput.node.setAttribute(
       'placeholder',
-      I18nUtils.getTranslation(this.scene, 'inputPassword')
+      I18nUtils.getTranslation(this.scene, 'INPUT_PASSWORD')
     );
   }
 
@@ -159,7 +159,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
       .text(
         this.containerWidth / 2,
         this.containerHeight / 2 + 50,
-        I18nUtils.getTranslation(this.scene, 'loginButton'),
+        I18nUtils.getTranslation(this.scene, 'LOGIN_BUTTON'),
         {
           fontFamily: 'DINAlternateBold',
           fontSize: '24px',
@@ -192,7 +192,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
     this.hideErrorMessage();
     this.loading.show();
     try {
-      const response = await UserService.login({
+      const response = await UserService.login(this.scene, {
         email: (this.emailInput.node as HTMLInputElement).value.trim(),
         password: (this.passwordInput.node as HTMLInputElement).value.trim(),
       });
@@ -202,7 +202,7 @@ export class LoginModal extends Phaser.GameObjects.Container {
       this.emit(this.event);
     } catch (err: unknown) {
       this.show();
-      this.showErrorMessage(getErrorMessage(err));
+      this.showErrorMessage(getErrorMessage(this.scene, err));
     } finally {
       this.loading.hide();
     }

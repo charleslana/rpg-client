@@ -65,7 +65,7 @@ export class LoginScene extends Phaser.Scene {
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 4;
     this.add
-      .text(centerX, centerY, I18nUtils.getTranslation(this, 'logoName'), {
+      .text(centerX, centerY, I18nUtils.getTranslation(this, 'LOGO_NAME'), {
         fontFamily: 'TrajanProRegular',
         fontSize: '48px',
         color: '#ffffff',
@@ -84,7 +84,7 @@ export class LoginScene extends Phaser.Scene {
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 2;
     const text = this.add
-      .text(centerX, centerY, I18nUtils.getTranslation(this, 'tapToStart'), {
+      .text(centerX, centerY, I18nUtils.getTranslation(this, 'TAP_TO_START'), {
         fontFamily: 'DINAlternateBold',
         fontSize: '32px',
         color: '#ffffff',
@@ -183,7 +183,7 @@ export class LoginScene extends Phaser.Scene {
       .text(
         this.containerWidth / 2 - 220,
         this.containerHeight * 0.75,
-        I18nUtils.getTranslation(this, 'newLogin'),
+        I18nUtils.getTranslation(this, 'NEW_LOGIN'),
         {
           fontFamily: 'DINAlternateBold',
           fontSize: '24px',
@@ -203,7 +203,7 @@ export class LoginScene extends Phaser.Scene {
       .text(
         this.containerWidth / 2 + 220,
         this.containerHeight * 0.75,
-        I18nUtils.getTranslation(this, 'newRegister'),
+        I18nUtils.getTranslation(this, 'NEW_REGISTER'),
         {
           fontFamily: 'DINAlternateBold',
           fontSize: '24px',
@@ -301,7 +301,7 @@ export class LoginScene extends Phaser.Scene {
     this.add.text(
       5,
       this.containerHeight - 20,
-      I18nUtils.getTranslation(this, 'createBy', { name: 'Charles' }),
+      I18nUtils.getTranslation(this, 'CREATE_BY', { name: 'Charles' }),
       {
         fontFamily: 'DINAlternateBold',
         fontSize: '12px',

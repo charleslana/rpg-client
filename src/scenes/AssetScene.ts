@@ -49,7 +49,7 @@ export class AssetScene extends Phaser.Scene {
     this.loadingText = this.make.text({
       x: width / 2,
       y: height / 2 - 50,
-      text: I18nUtils.getTranslation(this, 'loading'),
+      text: I18nUtils.getTranslation(this, 'LOADING'),
       style: {
         font: '20px monospace',
         color: '#ffffff',
@@ -108,7 +108,7 @@ export class AssetScene extends Phaser.Scene {
   }
 
   private handleLoadEvent(file: Phaser.Loader.File): void {
-    this.assetText.setText(I18nUtils.getTranslation(this, 'loadingAsset', { asset: file.key }));
+    this.assetText.setText(I18nUtils.getTranslation(this, 'LOADING_ASSET', { asset: file.key }));
   }
 
   private async handleCompleteEvent(): Promise<void> {
@@ -121,7 +121,7 @@ export class AssetScene extends Phaser.Scene {
       this.assetText.destroy();
       this.scene.start(SceneKeyEnum.LoginSceneKey);
     } catch (error) {
-      this.text.setText(getErrorMessage(error));
+      this.text.setText(getErrorMessage(this, error));
       this.show();
     }
   }
@@ -138,7 +138,7 @@ export class AssetScene extends Phaser.Scene {
   private async checkVersion(): Promise<void> {
     const version = await PublicService.getVersion();
     if (version != process.env.npm_package_version) {
-      throw new GlobalError(I18nUtils.getTranslation(this, 'outdatedVersion'));
+      throw new GlobalError(I18nUtils.getTranslation(this, 'OUTDATED_VERSION'));
     }
   }
 
