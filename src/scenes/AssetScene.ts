@@ -119,7 +119,7 @@ export class AssetScene extends Phaser.Scene {
       this.loadingText.destroy();
       this.percentText.destroy();
       this.assetText.destroy();
-      this.scene.start(SceneKeyEnum.LoginSceneKey);
+      this.scene.start(SceneKeyEnum.HomeSceneKey);
     } catch (error) {
       this.text.setText(getErrorMessage(this, error));
       this.show();
@@ -133,6 +133,8 @@ export class AssetScene extends Phaser.Scene {
     this.loadRanger();
     this.loadMage();
     this.loadLogin();
+    this.loadHome();
+    this.loadAvatar();
   }
 
   private async checkVersion(): Promise<void> {
@@ -201,6 +203,14 @@ export class AssetScene extends Phaser.Scene {
       frameWidth: 62,
       frameHeight: 62,
     });
+  }
+
+  private loadHome(): void {
+    this.load.image(AssetKeysEnum.HomeBackground, './assets/images/home/background.png');
+  }
+
+  private loadAvatar(): void {
+    this.load.image(AssetKeysEnum.AvatarFireKnight, './assets/images/avatar/fire_knight.png');
   }
 
   private loadFireKnight(): void {

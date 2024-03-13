@@ -17,4 +17,6 @@ export enum AssetKeysEnum {
   Pt = 'pt',
   En = 'en',
   Es = 'es',
+  AvatarFireKnight = 'AvatarFireKnight',
+  HomeBackground = 'HomeBackground',
 }
