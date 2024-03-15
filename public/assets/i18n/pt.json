@@ -24,5 +24,6 @@
   "USER_BANNED": "O usuário está banido até {{value}}",
   "USER_CHARACTER_DELETED_SUCCESS": "Personagem excluído com sucesso",
   "ERROR_REQUEST": "Ocorreu um erro na requisição",
-  "ERROR": "Ocorreu um erro, tente novamente"
+  "ERROR": "Ocorreu um erro, tente novamente",
+  "HEADER_USER_LEVEL": "Nível {{level}}"
 }

@@ -24,5 +24,6 @@
   "USER_BANNED": "El usuario está baneado hasta {{value}}",
   "USER_CHARACTER_DELETED_SUCCESS": "Personaje excluido con buen éxito",
   "ERROR_REQUEST": "Se produjo un error en la solicitud.",
-  "ERROR": "Se produjo un error, inténtalo de nuevo"
+  "ERROR": "Se produjo un error, inténtalo de nuevo",
+  "HEADER_USER_LEVEL": "Nivel {{level}}"
 }

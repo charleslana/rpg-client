@@ -24,5 +24,6 @@
   "USER_BANNED": "The user is banned until {{value}}",
   "USER_CHARACTER_DELETED_SUCCESS": "Character successfully deleted",
   "ERROR_REQUEST": "An error occurred in the request",
-  "ERROR": "An error has occurred, please try again"
+  "ERROR": "An error has occurred, please try again",
+  "HEADER_USER_LEVEL": "Level {{level}}"
 }

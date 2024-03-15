@@ -46,3 +46,8 @@ body {
   font-family: 'TrajanProRegular';
   src: url('assets/fonts/TrajanProRegular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Beleren2016SmallCapsBold';
+  src: url('assets/fonts/Beleren2016SmallCapsBold.ttf') format('truetype');
+}

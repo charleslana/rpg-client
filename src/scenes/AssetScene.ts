@@ -199,6 +199,8 @@ export class AssetScene extends Phaser.Scene {
 
   private loadIcons(): void {
     this.load.image(AssetKeysEnum.ShadowIcon, './assets/images/icons/shadow.png');
+    this.load.image(AssetKeysEnum.RubyIcon, './assets/images/icons/ruby.png');
+    this.load.image(AssetKeysEnum.GoldIcon, './assets/images/icons/gold.png');
     this.load.spritesheet(AssetKeysEnum.Loading, './assets/images/icons/loading.png', {
       frameWidth: 62,
       frameHeight: 62,

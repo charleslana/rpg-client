@@ -19,4 +19,6 @@ export enum AssetKeysEnum {
   Es = 'es',
   AvatarFireKnight = 'AvatarFireKnight',
   HomeBackground = 'HomeBackground',
+  RubyIcon = 'RubyIcon',
+  GoldIcon = 'GoldIcon',
 }

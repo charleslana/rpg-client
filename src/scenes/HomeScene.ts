@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import { AssetKeysEnum } from '@enum/AssetKeysEnum';
 import { Character } from '@components/Character';
+import { Header } from '@modules/home/Header';
 import { SceneKeyEnum } from '@enum/SceneKeyEnum';
 import { store } from '@store/store';
 import { UserMe } from '@interface/IUser';
@@ -16,8 +17,6 @@ export class HomeScene extends Phaser.Scene {
 
   private currentUser: UserMe | null;
   // private userCharacters: IUserCharacter[];
-  private headerContainer: Phaser.GameObjects.Container;
-  private headerExperienceBar: Phaser.GameObjects.Graphics;
 
   init(): void {
     this.currentUser = store.getState().user.currentUser;
@@ -28,8 +27,10 @@ export class HomeScene extends Phaser.Scene {
     this.setBackgroundImage();
     // this.createLayout();
     // this.createLogoutButton();
-    this.createHeader();
-    this.updateExperienceBar(25, 100);
+    // this.createHeader();
+    const header = new Header(this);
+    header.updateExperienceBar(25, 100);
+    header.updateUser(this.currentUser);
     this.createCharacters();
   }
 
@@ -37,100 +38,6 @@ export class HomeScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor('#ffffff');
     const backgroundImage = this.add.image(0, 0, AssetKeysEnum.HomeBackground).setOrigin(0, 0);
     backgroundImage.setDisplaySize(this.cameras.main.width, this.cameras.main.height);
-  }
-
-  private createHeader(): void {
-    this.headerContainer = this.add.container(0, 0);
-    this.createExperienceBarBackground();
-    this.createExperienceBar();
-    const image = this.createAvatar();
-    this.createAvatarName(image);
-    this.createAvatarLevel(image);
-  }
-
-  private createExperienceBarBackground(): void {
-    const experienceBarBackground = this.add.graphics();
-    experienceBarBackground.fillStyle(0x333333);
-    experienceBarBackground.fillRect(0, 0, this.cameras.main.width, 5);
-    this.headerContainer.add(experienceBarBackground);
-  }
-
-  private createExperienceBar(): void {
-    const totalExperience = 100;
-    const currentExperience = 50;
-    const experienceBarWidth = this.cameras.main.width * (currentExperience / totalExperience);
-    this.headerExperienceBar = this.add.graphics();
-    this.headerExperienceBar.fillStyle(0x7fff7f);
-    this.headerExperienceBar.fillRect(0, 0, experienceBarWidth, 5);
-    this.headerContainer.add(this.headerExperienceBar);
-  }
-
-  private updateExperienceBar(currentExperience: number, totalExperience: number): void {
-    const experienceBarWidth = this.cameras.main.width * (currentExperience / totalExperience);
-    this.headerExperienceBar.clear();
-    this.headerExperienceBar.fillStyle(0x7fff7f);
-    this.headerExperienceBar.fillRect(0, 0, experienceBarWidth, 5);
-  }
-
-  private createAvatar(): Phaser.GameObjects.Image {
-    const imageWidth = 80;
-    const imageHeight = 80;
-    const border = this.add.graphics();
-    border.lineStyle(2, 0x000000);
-    border.strokeRect(0, 6, imageWidth, imageHeight);
-    this.headerContainer.add(border);
-    const image = this.add.image(
-      imageWidth / 2,
-      imageHeight / 2 + 6,
-      AssetKeysEnum.AvatarFireKnight
-    );
-    image.setDisplaySize(imageWidth - 4, imageHeight - 4);
-    this.headerContainer.add(image);
-    return image;
-  }
-
-  private createAvatarName(image: Phaser.GameObjects.Image): void {
-    const nameText = this.add.text(
-      image.x + image.displayWidth / 2 + 10,
-      image.y / 1.5,
-      this.currentUser?.name ?? 'Sem nome',
-      {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '16px',
-        color: '#ffffff',
-        shadow: {
-          offsetX: 3,
-          offsetY: 3,
-          color: '#000000',
-          blur: 5,
-          fill: true,
-        },
-      }
-    );
-    nameText.setOrigin(0, 0.5);
-    this.headerContainer.add(nameText);
-  }
-
-  private createAvatarLevel(image: Phaser.GameObjects.Image): void {
-    const levelText = this.add.text(
-      image.x + image.displayWidth / 2 + 10,
-      image.y + image.displayHeight / 3,
-      `Nível 1`,
-      {
-        fontFamily: 'DINAlternateBold',
-        fontSize: '16px',
-        color: '#ffffff',
-        shadow: {
-          offsetX: 3,
-          offsetY: 3,
-          color: '#000000',
-          blur: 5,
-          fill: true,
-        },
-      }
-    );
-    levelText.setOrigin(0, 0.5);
-    this.headerContainer.add(levelText);
   }
 
   private createCharacters(): void {
