@@ -29,7 +29,6 @@ export class HomeScene extends Phaser.Scene {
     // this.createLogoutButton();
     // this.createHeader();
     const header = new Header(this);
-    header.updateExperienceBar(25, 100);
     header.updateUser(this.currentUser);
     this.createCharacters();
   }

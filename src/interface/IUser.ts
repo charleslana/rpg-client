@@ -16,4 +16,9 @@ export interface IToken {
 
 export interface UserMe {
   name: string;
+  level: number;
+  gold: number;
+  ruby: number;
+  experience: number;
+  maxExperience: number;
 }

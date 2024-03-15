@@ -14,12 +14,22 @@ export class Header extends Phaser.GameObjects.Container {
   private headerExperienceBar: Phaser.GameObjects.Graphics;
   private userName: Phaser.GameObjects.Text;
   private userLevel: Phaser.GameObjects.Text;
+  private userGold: Phaser.GameObjects.Text;
+  private userRuby: Phaser.GameObjects.Text;
 
   public updateUser(user: UserMe | null): void {
     this.userName.setText(user?.name ?? 'NO_NAME');
+    this.userLevel.setText(
+      I18nUtils.getTranslation(this.scene, 'HEADER_USER_LEVEL', {
+        level: user?.level.toString() ?? '0',
+      })
+    );
+    this.userGold.setText(formatNumber(user?.gold ?? 7000));
+    this.userRuby.setText(formatNumber(user?.ruby ?? 20000));
+    this.updateExperienceBar(user?.experience ?? 50, user?.maxExperience ?? 100);
   }
 
-  public updateExperienceBar(currentExperience: number, totalExperience: number): void {
+  private updateExperienceBar(currentExperience: number, totalExperience: number): void {
     const experienceBarWidth =
       this.scene.cameras.main.width * (currentExperience / totalExperience);
     this.headerExperienceBar.clear();
@@ -78,7 +88,7 @@ export class Header extends Phaser.GameObjects.Container {
   }
 
   private createGoldText(backgroundWidth: number): void {
-    const goldText = this.scene.add.text(
+    this.userGold = this.scene.add.text(
       this.scene.cameras.main.width - 20 - backgroundWidth * 2 + 120,
       42.5,
       formatNumber(10000),
@@ -89,8 +99,8 @@ export class Header extends Phaser.GameObjects.Container {
         align: 'right',
       }
     );
-    goldText.setOrigin(1, 0.5);
-    this.headerContainer.add(goldText);
+    this.userGold.setOrigin(1, 0.5);
+    this.headerContainer.add(this.userGold);
   }
 
   private createRubyInfo(): void {
@@ -102,7 +112,7 @@ export class Header extends Phaser.GameObjects.Container {
   }
 
   private createRubyText(): void {
-    const rubyText = this.scene.add.text(
+    this.userRuby = this.scene.add.text(
       this.scene.cameras.main.width - 30,
       42.5,
       formatNumber(5000),
@@ -113,8 +123,8 @@ export class Header extends Phaser.GameObjects.Container {
         align: 'right',
       }
     );
-    rubyText.setOrigin(1, 0.5);
-    this.headerContainer.add(rubyText);
+    this.userRuby.setOrigin(1, 0.5);
+    this.headerContainer.add(this.userRuby);
   }
 
   private createRubyImage(backgroundWidth: number): void {
