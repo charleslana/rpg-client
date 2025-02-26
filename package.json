@@ -12,10 +12,12 @@
     "check-lint": "eslint .",
     "lint": "eslint . --fix",
     "start": "npm run build && npx serve dist -s -l 4000",
-    "kill": "kill -9 $(lsof -ti:8090)"
+    "kill": "kill -9 $(lsof -ti:8090)",
+    "test": "npx tsx src/config/api.ts"
   },
   "dependencies": {
     "@mdi/font": "7.4.47",
+    "axios": "^1.8.1",
     "core-js": "^3.37.1",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
@@ -35,6 +37,7 @@
     "sass": "1.77.8",
     "sass-embedded": "^1.77.8",
     "serve": "^14.2.4",
+    "tsx": "^4.19.3",
     "typescript": "~5.6.3",
     "unplugin-auto-import": "^0.17.6",
     "unplugin-fonts": "^1.1.1",

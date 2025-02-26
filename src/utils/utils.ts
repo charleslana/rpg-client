@@ -1,3 +1,12 @@
-export const getTitle = (name: string) => {
+export const getTitle = (name: string): string => {
   return `${name} - Minha Aplicação`;
+};
+
+export const createRandomString = (length: number): string => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
 };
