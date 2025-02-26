@@ -1,5 +1,5 @@
 export const getTitle = (name: string): string => {
-  return `${name} - Minha Aplicação`;
+  return `${name} - Solo Leveling RPG`;
 };
 
 export const createRandomString = (length: number): string => {

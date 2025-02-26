@@ -19,7 +19,7 @@
     >
       Voltar para Home
     </v-btn>
-    <v-icon
+    <!-- <v-icon
       size="100"
       color="primary"
     >
@@ -30,7 +30,7 @@
       target="_blank"
     >
       Link
-    </v-btn>
+    </v-btn> -->
   </v-container>
 </template>
 
