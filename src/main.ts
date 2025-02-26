@@ -13,6 +13,8 @@ import App from './App.vue';
 // Composables
 import { createApp } from 'vue';
 
+import 'rpg-awesome/css/rpg-awesome.min.css';
+
 const app = createApp(App);
 
 registerPlugins(app);

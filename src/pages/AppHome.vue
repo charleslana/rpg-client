@@ -1,4 +1,5 @@
 <template>
+  <AppBarComponent />
   <v-parallax src="@/assets/images/home/parallax.jpg">
     <v-container class="fill-height">
       <v-row
@@ -41,16 +42,10 @@
                   <span class="font-weight-black">Registre-se</span>
                 </template>
                 <v-card-text class="bg-surface-light pt-4 text-center">
-                  <v-btn
-                    density="default"
-                    to="/register"
-                  >
-                    Cadastrar
-                  </v-btn>
+                  <RegisterComponent />
                 </v-card-text>
               </v-card>
             </v-col>
-
             <v-col
               cols="12"
               md="6"
@@ -80,6 +75,7 @@
       />
     </v-container>
   </v-parallax>
+  <FooterComponent />
 </template>
 
 <script lang="ts" setup>
