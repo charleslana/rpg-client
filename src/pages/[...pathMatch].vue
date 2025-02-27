@@ -20,33 +20,34 @@
       Voltar para Home
     </v-btn>
     <!-- <v-icon
-      size="100"
-      color="primary"
-    >
-      mdi-account
-    </v-icon>
-    <v-btn
-      href="https://pictogrammers.com/library/mdi/"
-      target="_blank"
-    >
-      Link
-    </v-btn> -->
+        size="100"
+        color="primary"
+      >
+        mdi-account
+      </v-icon>
+      <v-btn
+        href="https://pictogrammers.com/library/mdi/"
+        target="_blank"
+      >
+        Link
+      </v-btn> -->
   </v-container>
 </template>
-
+  
 <script lang="ts" setup>
 import { getTitle } from '@/utils/utils';
 import { useRouter } from 'vue-router';
-
+  
 const router = useRouter();
-
+  
 onMounted(() => {
   document.title = getTitle('Página Não Encontrada');
 });
-
+  
 const goHome = () => {
   router.push('/');
 };
 </script>
-
+  
 <style scoped></style>
+  

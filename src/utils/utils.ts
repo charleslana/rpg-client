@@ -10,3 +10,16 @@ export const createRandomString = (length: number): string => {
   }
   return result;
 };
+
+export function decodeBase64(encoded: string): string {
+  try {
+    return atob(encoded);
+  } catch (error) {
+    console.error('Erro ao decodificar Base64:', error);
+    return '';
+  }
+}
+
+export function encodeBase64(value: string): string {
+  return btoa(value);
+}

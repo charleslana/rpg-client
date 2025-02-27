@@ -7,7 +7,7 @@
       {{ authStore.email }}
     </p>
     <p class="text-subtitle-2">
-      {{ email }}
+      {{ emailParam }}
     </p>
     <v-btn
       class="mt-4"
@@ -19,21 +19,23 @@
     </v-btn>
   </v-container>
 </template>
-  
+    
 <script lang="ts" setup>
 import { useAuthStore } from '@/stores/auth';
-import { getTitle } from '@/utils/utils';
+import { decodeBase64, getTitle } from '@/utils/utils';
 import { useRoute } from 'vue-router';
-  
+    
 onMounted(() => {
   document.title = getTitle('Cadastro');
 });
-
-const route = useRoute();
-
-const email = ref(route.query.email || '');
-
+  
+const route = useRoute('/register/[email]');
+  
+// const email = ref(route.query.email || '');
+  
 const authStore = useAuthStore();
+  
+const emailParam = computed(() => decodeBase64(route.params.email));
 </script>
-
+  
 <style scoped></style>

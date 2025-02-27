@@ -69,6 +69,7 @@ import {useVuelidate} from '@vuelidate/core';
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import { encodeBase64 } from '@/utils/utils';
 
 const router = useRouter(); 
 
@@ -125,7 +126,9 @@ const validateForm = () => {
     return;
   }
   authStore.setEmail(state.email);
-  router.push({ path: '/register', query: { email: state.email } });
+  // router.push({ path: '/register', query: { email: state.email } });
+  const encodedEmail = encodeBase64(state.email);
+  router.push({ path: `/register/${encodedEmail}` });
 }
 </script>
 
