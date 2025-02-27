@@ -2,7 +2,7 @@
   <v-overlay
     v-model="visible"
     persistent
-    scroll-strategy="none"
+    scroll-strategy="block"
   />
 </template>
   

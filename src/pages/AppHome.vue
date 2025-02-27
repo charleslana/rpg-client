@@ -1,7 +1,7 @@
 <template>
   <AppBarComponent />
   <v-parallax src="@/assets/images/home/parallax.jpg">
-    <v-container class="fill-height">
+    <v-container class="fill-height min-h-100">
       <v-row
         class="justify-center align-center flex-column-reverse flex-md-row"
       >
@@ -9,7 +9,7 @@
           cols="12"
           md="6"
         >
-          <h1 class="text-h1 mb-8">
+          <h1 class="text-h1 mb-8 shadow-yellow">
             Solo Leveling RPG
           </h1>
           <h3 class="text-h3 mb-8 font-weight-thin">

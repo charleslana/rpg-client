@@ -6,9 +6,12 @@
     flat
     class="custom-app-bar"
   >
-    <v-container fluid>
+    <v-container class="d-flex align-center">
       <v-app-bar-nav-icon @click="drawer = !drawer">
-        <v-icon size="36">
+        <v-icon
+          size="36"
+          class="blur-5px"
+        >
           mdi-menu
         </v-icon>
       </v-app-bar-nav-icon>
@@ -40,11 +43,11 @@
         <v-list-item
           v-for="item in category.items"
           :key="item.value"
-          @click="selectGroup(item.value)"
+          @click="selectGroup(item.value, item.link)"
         >
           <v-icon
             left
-            :class="item.icon"
+            v-bind="item.icon.startsWith('ra') ? { class: item.icon } : { icon: item.icon }"
           />
           {{ item.title }}
         </v-list-item>
@@ -55,33 +58,37 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 
 const drawer = ref(false);
 const group = ref<string | null>(null);
 
-const openedGroups = ref(['Categoria 1', 'Categoria 2']);
+const openedGroups = ref(['Personagem', 'Ajuda']);
 
 const menu = ref([
   {
-    title: 'Categoria 1',
-    icon: 'ra ra-sword',
+    title: 'Personagem',
+    icon: 'ra ra-monster-skull',
     items: [
-      { title: 'Item 1', value: 'item1', icon: 'ra ra-shield' },
-      { title: 'Item 2', value: 'item2', icon: 'ra ra-crossbow' },
+      { title: 'Login', value: 'item1', icon: 'mdi-home-account', link: '/' },
+      { title: 'Cadastro', value: 'item2', icon: 'mdi-home-account', link: '/register/ZW1haWxAZW1haWwuY29t' },
     ],
   },
   {
-    title: 'Categoria 2',
-    icon: 'ra ra-helmet',
+    title: 'Ajuda',
+    icon: 'ra ra-help',
     items: [
-      { title: 'Item 3', value: 'item3', icon: 'ra ra-dragon' },
-      { title: 'Item 4', value: 'item4', icon: 'ra ra-player-dodge' },
+      { title: 'Item 3', value: 'item3', icon: 'ra ra-dragon', link: '/' },
+      { title: 'Item 4', value: 'item4', icon: 'ra ra-player-dodge', link: '/' },
     ],
   },
 ]);
 
-const selectGroup = (value: string) => {
+const router = useRouter();
+
+const selectGroup = (value: string, link: string) => {
   group.value = value;
+  router.push(link);
 };
 
 watch(group, () => {

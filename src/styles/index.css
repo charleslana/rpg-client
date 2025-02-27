@@ -18,3 +18,19 @@
 .ra {
   font-family: RPGAwesome !important;
 }
+
+.min-h-100 {
+  min-height: 100vh;
+}
+
+.shadow-yellow {
+  text-shadow: #fc0 1px 0 10px;
+}
+
+.v-main {
+  background-color: #222222;
+}
+
+.blur-5px {
+  backdrop-filter: blur(5px);
+}
