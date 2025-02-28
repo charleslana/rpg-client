@@ -4,13 +4,12 @@
     app
     color="transparent"
     flat
-    class="custom-app-bar"
+    absolute
   >
     <v-container class="d-flex align-center">
       <v-app-bar-nav-icon @click="drawer = !drawer">
         <v-icon
           size="36"
-          class="blur-5px"
         >
           mdi-menu
         </v-icon>

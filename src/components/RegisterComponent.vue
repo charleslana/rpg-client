@@ -31,7 +31,7 @@
                 required
                 type="email"
                 @blur="v$.email.$touch"
-                @input="v$.email.$touch"
+                @input="handleEmailInput"
               />
             </v-col>
           </v-row>
@@ -105,6 +105,11 @@ const isFormInvalid = computed(() => {
 });
 
 const authStore = useAuthStore();
+
+const handleEmailInput = () => {
+  state.email = state.email.toLowerCase();
+  v$.value.email.$touch();
+};
 
 const handleSubmit = async () => {
   const isValid = await v$.value.$validate();

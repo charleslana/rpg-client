@@ -5,9 +5,7 @@
     <div class="pt-0">
       Criado de fã para fã, desenvolvido por Charles Lana
     </div>
-
     <v-divider />
-
     <div>
       {{ new Date().getFullYear() }} — Solo Leveling RPG
     </div>
@@ -16,4 +14,9 @@
 
 <script setup lang="ts"></script>
 
-<style scoped></style>
+<style scoped>
+footer {
+  margin-top: auto;
+  flex: none;
+}
+</style>

@@ -1,7 +1,10 @@
 <template>
   <AppBarComponent />
-  <v-parallax src="@/assets/images/home/parallax.jpg">
-    <v-container class="fill-height min-h-100">
+  <v-parallax
+    src="@/assets/images/home/parallax.jpg"
+    class="pt-5"
+  >
+    <v-container class="fill-height min-h-100 my-5">
       <v-row
         class="justify-center align-center flex-column-reverse flex-md-row"
       >
