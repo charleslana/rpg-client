@@ -132,14 +132,14 @@
                   v-model.trim="state.characterName"
                   :counter="20"
                   hint="Você poderá trocar este nome futuramente"
-                  :error-messages="nameInvalid && v$.characterName.$dirty ? ['Nome indisponível'] : characterNameErrors"
+                  :error-messages="characterNameInputErrors"
                   density="comfortable"
                   placeholder="Jogador123"
                   variant="outlined"
                   required
                   type="text"
                   @blur="v$.characterName.$touch"
-                  @input="v$.characterName.$touch"
+                  @input="handleCharacterNameInput"
                 />
               </v-col>
               <v-col
@@ -179,7 +179,7 @@
           block
           text="Continuar"
           type="submit"
-          :disabled="isFormInvalid || overlay || nameInvalid || loading"
+          :disabled="overlay || nameInvalid || loading"
           :loading="overlay || loading"
         />
       </form>
@@ -216,6 +216,8 @@ const emailParam = computed(() => decodeBase64(route.params.email));
 const overlay = ref(false);
 
 const nameInvalid = ref(true);
+
+const checked = ref(false);
 
 const loading = ref(false);
 
@@ -324,6 +326,16 @@ const characterNameErrors = computed(() =>
   v$.value.characterName.$errors.map(e => e.$message) as string[]
 );
 
+const characterNameInputErrors = computed(() => {
+  if (characterNameErrors.value.length > 0) {
+    return characterNameErrors.value;
+  }
+  if (nameInvalid.value && checked.value) {
+    return ['Nome indisponível'];
+  }
+  return [];
+});
+
 const isFormInvalid = computed(() => {
   return v$.value.$invalid;
 });
@@ -336,14 +348,20 @@ const handleNameInput = () => {
   v$.value.name.$touch();
 };
 
+const handleCharacterNameInput = () => {
+  checked.value = false;
+  v$.value.characterName.$touch();
+};
+
 const checkCharacterName = () => {
   console.log('Verificando nome do personagem:', state.characterName);
   loading.value = true;
+  checked.value = false;
   setTimeout(() => {
     loading.value = false;
     const isNameAvailable = Math.random() > 0.5;
     nameInvalid.value = !isNameAvailable;
-    nameInvalid.value = false;
+    checked.value = true;
   }, 1000);
 };
 
