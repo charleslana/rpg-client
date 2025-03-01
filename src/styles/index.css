@@ -74,3 +74,17 @@ html.v-overlay-scroll-blocked {
 .menu-item .v-list-item__content {
   display: flex;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+}
