@@ -4,7 +4,10 @@
       {{ title }}
     </template>
     <template #subtitle>
-      <span v-if="subtitle">{{ subtitle }}</span>
+      <span
+        v-if="subtitle"
+        class="subtitle-text"
+      >{{ subtitle }}</span>
     </template>
     <v-card-text>
       {{ text }}
@@ -12,13 +15,19 @@
   </v-card>
 </template>
   
-  <script setup lang="ts">
-  defineProps<{
-    title: string;
-    subtitle?: string;
-    text: string;
-  }>();
-  </script>
+<script setup lang="ts">
+defineProps<{
+  title: string;
+  subtitle?: string;
+  text: string;
+}>();
+</script>
   
-  <style scoped></style>
+<style scoped>
+.subtitle-text {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+</style>
   

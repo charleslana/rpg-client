@@ -62,7 +62,7 @@ import { useRouter } from 'vue-router';
 const drawer = ref(false);
 const group = ref<string | null>(null);
 
-const openedGroups = ref(['Personagem', 'Ajuda']);
+const openedGroups = ref(['Personagem', 'Termos e Regras']);
 
 const menu = ref([
   {
@@ -74,11 +74,11 @@ const menu = ref([
     ],
   },
   {
-    title: 'Ajuda',
+    title: 'Termos e Regras',
     icon: 'ra ra-help',
     items: [
-      { title: 'Item 3', value: 'item3', icon: 'ra ra-dragon', link: '/' },
-      { title: 'Item 4', value: 'item4', icon: 'ra ra-player-dodge', link: '/' },
+      { title: 'Termos de Serviço', value: 'item3', icon: 'ra ra-shield', link: '/tos' },
+      { title: 'Regras', value: 'item4', icon: 'ra ra-metal-gate', link: '/rules' },
     ],
   },
 ]);
@@ -92,6 +92,19 @@ const selectGroup = (value: string, link: string) => {
 
 watch(group, () => {
   drawer.value = false;
+});
+
+watch(drawer, (isOpen) => {
+  const html = document.documentElement;
+  if (isOpen) {
+    html.classList.add('v-overlay-scroll-blocked');
+    html.style.setProperty('--v-body-scroll-x', '0px');
+    html.style.setProperty('--v-body-scroll-y', '0px');
+    return;
+  }
+  html.classList.remove('v-overlay-scroll-blocked');
+  html.style.removeProperty('--v-body-scroll-x');
+  html.style.removeProperty('--v-body-scroll-y');
 });
 </script>
 

@@ -26,5 +26,7 @@ declare module 'vue-router/auto-routes' {
     '/ExampleParams[email]': RouteRecordInfo<'/ExampleParams[email]', '/ExampleParams:email', { email: ParamValue<true> }, { email: ParamValue<false> }>,
     '/ModelPage': RouteRecordInfo<'/ModelPage', '/ModelPage', Record<never, never>, Record<never, never>>,
     '/register/[email]': RouteRecordInfo<'/register/[email]', '/register/:email', { email: ParamValue<true> }, { email: ParamValue<false> }>,
+    '/Rules': RouteRecordInfo<'/Rules', '/Rules', Record<never, never>, Record<never, never>>,
+    '/TOS': RouteRecordInfo<'/TOS', '/TOS', Record<never, never>, Record<never, never>>,
   }
 }

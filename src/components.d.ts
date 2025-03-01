@@ -11,6 +11,7 @@ declare module 'vue' {
     AppBarComponent: typeof import('./components/AppBarComponent.vue')['default']
     EmitComponent: typeof import('./components/EmitComponent.vue')['default']
     FooterComponent: typeof import('./components/FooterComponent.vue')['default']
+    HeaderImageComponent: typeof import('./components/HeaderImageComponent.vue')['default']
     InfoHomeComponent: typeof import('./components/InfoHomeComponent.vue')['default']
     LoginComponent: typeof import('./components/LoginComponent.vue')['default']
     ModelComponent: typeof import('./components/ModelComponent.vue')['default']
