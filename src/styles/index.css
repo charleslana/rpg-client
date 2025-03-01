@@ -65,3 +65,8 @@ html.v-overlay-scroll-blocked {
   -webkit-line-clamp: 99;
   line-clamp: 99;
 }
+
+.v-overlay__scrim {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  opacity: 1 !important;
+}

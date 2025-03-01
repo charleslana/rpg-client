@@ -2,7 +2,7 @@
   <AppBarComponent />
   <v-parallax
     src="@/assets/images/home/parallax.jpg"
-    class="pt-5"
+    class="pt-5 p-overlay"
   >
     <v-container class="fill-height min-h-100 my-5">
       <v-row
@@ -12,10 +12,10 @@
           cols="12"
           md="6"
         >
-          <h1 class="text-h1 mb-8 shadow-yellow">
+          <h1 class="text-h1 mb-8 shadow-yellow blur-5px">
             Solo Leveling RPG
           </h1>
-          <h3 class="text-h3 mb-8 font-weight-thin">
+          <h3 class="text-h3 mb-8 font-weight-thin blur-5px">
             RPG Online de Navegador
           </h3>
           <v-btn
