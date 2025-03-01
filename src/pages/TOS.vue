@@ -7,21 +7,29 @@
         Termos de Serviço
       </div>
       <v-list
-        :items="terms"
         lines="three"
         item-props
         class="v-list-transparent v-list-item--99-line"
       >
-        <template #subtitle="{ subtitle }">
-          <ul class="pl-4">
-            <li
-              v-for="(item, i) in subtitle"
-              :key="i"
-            >
-              {{ item }}
-            </li>
-          </ul>
-        </template>
+        <v-list-item
+          v-for="(term, index) in terms"
+          :key="index"
+        >
+          <v-list-item-title>{{ term.title }}</v-list-item-title>
+          <v-list-item-subtitle v-if="Array.isArray(term.subtitle)">
+            <ul class="pl-4">
+              <li
+                v-for="(item, i) in term.subtitle"
+                :key="i"
+              >
+                {{ item }}
+              </li>
+            </ul>
+          </v-list-item-subtitle>
+          <v-list-item-subtitle v-else>
+            {{ term.subtitle }}
+          </v-list-item-subtitle>
+        </v-list-item>
       </v-list>
     </v-container>
     <FooterComponent />

@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    class="bg-indigo-lighten-1 text-center d-flex flex-column"
+    class="text-center d-flex flex-column"
   >
     <div class="pt-0">
       Criado de fã para fã, desenvolvido por Charles Lana
@@ -18,5 +18,6 @@
 footer {
   margin-top: auto;
   flex: none;
+  background: rgba(12, 12, 12, .8);
 }
 </style>

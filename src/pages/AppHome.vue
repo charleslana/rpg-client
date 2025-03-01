@@ -2,8 +2,9 @@
   <AppBarComponent />
   <v-parallax
     src="@/assets/images/home/parallax.jpg"
-    class="pt-5 p-overlay"
+    class="pt-5"
   >
+    <div class="parallax-overlay" />
     <v-container class="fill-height min-h-100 my-5">
       <v-row
         class="justify-center align-center flex-column-reverse flex-md-row"
@@ -12,18 +13,18 @@
           cols="12"
           md="6"
         >
-          <h1 class="text-h1 mb-8 shadow-yellow blur-5px">
+          <h1 class="text-h1 mb-8 shadow-yellow text-uppercase">
             Solo Leveling RPG
           </h1>
-          <h3 class="text-h3 mb-8 font-weight-thin blur-5px">
+          <h3 class="text-h3 mb-8 font-weight-thin">
             RPG Online de Navegador
           </h3>
           <v-btn
             class="elevation-4 rounded-xl mb-4"
             color="primary"
-            @click="scrollToInfo"
+            @click="openRegister"
           >
-            Quero saber mais
+            Quero me cadastrar
           </v-btn>
         </v-col>
         <v-col
@@ -45,7 +46,7 @@
                   <span class="font-weight-black">Registre-se</span>
                 </template>
                 <v-card-text class="bg-surface-light pt-4 text-center">
-                  <RegisterComponent />
+                  <RegisterComponent ref="registerRef" />
                 </v-card-text>
               </v-card>
             </v-col>
@@ -84,17 +85,27 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 import { getTitle } from '@/utils/utils';
+import type RegisterComponent from '@/components/RegisterComponent.vue';
 
 onMounted(() => {
   document.title = getTitle('Home');
 });
 
-const scrollToInfo = () => {
-  const element = document.getElementById('info');
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
+const registerRef = ref<InstanceType<typeof RegisterComponent> | null>(null);
+
+const openRegister = () => {
+  registerRef.value?.openRegister();
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.parallax-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(45, 45, 45, 0.8) 0%, rgba(0, 20, 50, 0.8) 100%);
+  z-index: -1;
+}
+</style>

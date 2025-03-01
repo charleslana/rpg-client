@@ -8,7 +8,7 @@
   >
     <div class="overlay" />
     <div class="text-overlay">
-      <h1 class="text-h1 text-white shadow-yellow blur-5px">
+      <h1 class="text-h1 text-white shadow-yellow blur-5px text-uppercase">
         Solo Leveling RPG
       </h1>
     </div>
@@ -37,7 +37,7 @@
     height: 134px !important;
   }
   .text-overlay .text-h1 {
-    font-size: 1.9rem !important;
+    font-size: 1.7rem !important;
   }
 }
 
