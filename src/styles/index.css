@@ -88,3 +88,7 @@ html.v-overlay-scroll-blocked {
   background: rgba(255, 255, 255, 0.1);
   border: none;
 }
+
+.m-w-100 {
+  min-width: 100%;
+}

@@ -5,11 +5,125 @@
     class="app-bar"
     height="38"
   >
-    <v-container class="d-flex align-center justify-space-between">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
+    <v-container
+      class="d-flex align-center justify-space-between m-w-100"
+    >
+      <div class="text-uppercase cursor-help">
+        Lv. 1
+        <v-tooltip
+          class="tooltip-app-bar text-center"
+          activator="parent"
+          location="bottom"
+          open-on-click
+        >
+          <v-row
+            class="flex-column"
+            no-gutters
+          >
+            <v-col class="text-uppercase">
+              Exp
+            </v-col>
+            <v-col>0 / 5</v-col>
+          </v-row>
+        </v-tooltip>
+      </div>
+      <div class="cursor-help">
+        <v-row
+          class="align-center ga-1"
+          no-gutters
+        >
+          <v-col class="d-flex align-center justify-center">
+            <v-img
+              src="@/assets/images/icons/life.svg"
+              width="16"
+              height="16"
+              eager
+            />
+          </v-col>
+          <v-col class="d-flex align-center justify-center">
+            100/100
+          </v-col>
+        </v-row>
+        <v-tooltip
+          class="tooltip-app-bar text-center"
+          activator="parent"
+          location="bottom"
+          open-on-click
+        >
+          Sua vida
+        </v-tooltip>
+      </div>
+      <div class="cursor-help">
+        <v-row
+          class="align-center ga-1"
+          no-gutters
+        >
+          <v-col class="d-flex align-center justify-center">
+            <v-img
+              src="@/assets/images/icons/gold.svg"
+              width="16"
+              height="16"
+              eager
+            />
+          </v-col>
+          <v-col class="d-flex align-center justify-center">
+            200
+          </v-col>
+        </v-row>
+        <v-tooltip
+          class="tooltip-app-bar text-center"
+          activator="parent"
+          location="bottom"
+          open-on-click
+        >
+          Seu ouro
+        </v-tooltip>
+      </div>
+      <div class="cursor-help">
+        <v-row
+          class="align-center ga-1"
+          no-gutters
+        >
+          <v-col class="d-flex align-center justify-center">
+            <v-img
+              src="@/assets/images/icons/files.svg"
+              width="16"
+              height="16"
+              eager
+            />
+          </v-col>
+          <v-col class="d-flex align-center justify-center text-uppercase">
+            All
+          </v-col>
+        </v-row>
+        <v-tooltip
+          class="tooltip-app-bar text-center min-width-180"
+          activator="parent"
+          location="bottom"
+          open-on-click
+        >
+          <v-row
+            class="align-center ga-1"
+            no-gutters
+          >
+            <v-col class="d-flex align-center justify-center">
+              <v-img
+                src="@/assets/images/icons/credit.svg"
+                width="16"
+                height="16"
+                eager
+              />
+            </v-col>
+            <v-col class="d-flex align-center justify-center">
+              15.000 créditos
+            </v-col>
+          </v-row>
+          <v-divider class="my-2" />
+          Texto b
+          <v-divider class="my-2" />
+          Texto c
+        </v-tooltip>
+      </div>
     </v-container>
   </v-app-bar>
 </template>
@@ -22,4 +136,21 @@
   background: linear-gradient(180deg, #020a13 0%, #002f5e 100%) !important;
   box-shadow: 0 4px 9px 0 rgba(0, 0, 0, .75) !important;
 }
-</style>  
+</style>
+
+<style>
+.tooltip-app-bar > .v-overlay__content {
+  background: #002f5e !important;
+  color: rgb(246, 246, 246) !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px !important;
+  border-radius: 10px !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgb(78, 82, 84) !important;
+  min-width: 140px !important;
+}
+
+.tooltip-app-bar.min-width-180 > .v-overlay__content {
+  min-width: 180px !important;
+}
+</style>
