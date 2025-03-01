@@ -24,8 +24,9 @@
       <v-btn
         :disabled="isFormInvalid || overlay"
         :loading="overlay"
-        class="me-4 mt-4"
+        class="me-4 mt-4 btn-custom"
         type="submit"
+        elevation="0"
       >
         Logar
       </v-btn>

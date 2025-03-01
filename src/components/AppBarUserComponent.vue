@@ -6,7 +6,7 @@
     height="38"
   >
     <v-container
-      class="d-flex align-center justify-space-between m-w-100"
+      class="d-flex align-center justify-space-between min-w-100"
     >
       <div class="text-uppercase cursor-help">
         Lv. 1

@@ -7,6 +7,8 @@
       <v-btn
         density="default"
         v-bind="activatorProps"
+        class="btn-custom"
+        elevation="0"
       >
         Cadastrar
       </v-btn>
@@ -55,6 +57,8 @@
             type="submit"
             :disabled="isFormInvalid || overlay"
             :loading="overlay"
+            elevation="0"
+            class="btn-custom"
           />
         </v-card-actions>
       </v-card>

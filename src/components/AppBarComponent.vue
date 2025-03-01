@@ -22,6 +22,7 @@
     temporary
     location="left"
     class="custom-drawer"
+    width="280"
   >
     <v-list v-model:opened="openedGroups">
       <v-list-group
@@ -170,5 +171,7 @@ watch(drawer, (isOpen) => {
 .custom-drawer {
   top: 0 !important;
   height: 100vh !important;
+  background: linear-gradient(180deg, #0c0809 0, #002f5e 100%);
+  border-right: 2px solid #4e5254;
 }
 </style>

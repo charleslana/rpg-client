@@ -73,6 +73,12 @@ html.v-overlay-scroll-blocked {
 
 .menu-item .v-list-item__content {
   display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: color 0.6s, transform 0.6s;
+}
+
+.menu-item:hover {
+  color: #004a8f;
 }
 
 ::-webkit-scrollbar {
@@ -89,6 +95,16 @@ html.v-overlay-scroll-blocked {
   border: none;
 }
 
-.m-w-100 {
+.min-w-100 {
   min-width: 100%;
+}
+
+.btn-custom {
+  border-top: 1px solid #4a5360 !important;
+  background-color: #17181b !important;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75) !important;
+}
+
+a {
+  color: #1e5fa2 !important;
 }

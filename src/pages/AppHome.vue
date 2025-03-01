@@ -20,7 +20,7 @@
             RPG Online de Navegador
           </h3>
           <v-btn
-            class="elevation-4 rounded-xl mb-4"
+            class="elevation-4 rounded-xl mb-4 btn-custom"
             color="primary"
             @click="openRegister"
           >
@@ -107,5 +107,11 @@ const openRegister = () => {
   height: 100%;
   background: linear-gradient(0deg, rgba(45, 45, 45, 0.8) 0%, rgba(0, 20, 50, 0.8) 100%);
   z-index: -1;
+}
+
+.btn-custom {
+  border-top: 1px solid #4a5360 !important;
+  background-color: rgba(255, 255, 255, 0.09) !important;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.75) !important;
 }
 </style>

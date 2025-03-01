@@ -135,12 +135,13 @@
                 md="4"
               >
                 <v-btn
-                  class="mb-5"
+                  class="mb-5 btn-custom"
                   size="large"
                   block
                   color="primary"
                   :disabled="isFormInvalid || loading"
                   :loading="loading"
+                  elevation="0"
                   @click="checkCharacterName"
                 >
                   Verificar disponibilidade
@@ -161,7 +162,7 @@
 
         <v-btn
           data-testid="continueBtn"
-          class="mt-5"
+          class="mt-5 btn-custom"
           rounded="xl"
           size="x-large"
           block
@@ -169,6 +170,7 @@
           type="submit"
           :disabled="overlay || nameInvalid || loading"
           :loading="overlay || loading"
+          elevation="0"
         />
       </form>
     </v-container>
