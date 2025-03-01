@@ -3,8 +3,9 @@
     :height="400"
     aspect-ratio="16/9"
     cover
-    src="@/assets/images/header.jpg"
+    src="@/assets/images/header/header.jpg"
     class="header-image"
+    eager
   >
     <div class="overlay" />
     <div class="text-overlay">

@@ -16,7 +16,6 @@
       </v-app-bar-nav-icon>
     </v-container>
   </v-app-bar>
-
   <v-navigation-drawer
     v-model="drawer"
     app
@@ -32,22 +31,62 @@
       >
         <template #activator="{ props }">
           <v-list-item v-bind="props">
-            <v-icon
-              left
-              :class="category.icon"
-            />
+            <template v-if="category.icon.startsWith('ra')">
+              <v-icon
+                left
+                v-bind="{ class: category.icon }"
+                class="mr-2"
+              />
+            </template>
+            <template v-else-if="category.icon.startsWith('mdi')">
+              <v-icon
+                left
+                v-bind="{ icon: category.icon }"
+                class="mr-2"
+              />
+            </template>
+            <template v-else>
+              <v-img
+                :src="category.icon"
+                width="24"
+                height="24"
+                contain
+                class="mr-2"
+              />
+            </template>
             {{ category.title }}
           </v-list-item>
         </template>
         <v-list-item
           v-for="item in category.items"
           :key="item.value"
-          @click="selectGroup(item.value, item.link)"
+          class="d-flex align-center menu-item"
+          @click="handleClick(item.value, item.link)"
         >
-          <v-icon
-            left
-            v-bind="item.icon.startsWith('ra') ? { class: item.icon } : { icon: item.icon }"
-          />
+          <template v-if="item.icon.startsWith('ra')">
+            <v-icon
+              left
+              v-bind="{ class: item.icon }"
+              class="mr-2"
+            />
+          </template>
+          <template v-else-if="item.icon.startsWith('mdi')">
+            <v-icon
+              left
+              v-bind="{ icon: item.icon }"
+              class="mr-2"
+            />
+          </template>
+          <template v-else>
+            <v-img
+              :src="item.icon"
+              width="24"
+              height="24"
+              contain
+              class="mr-2"
+              eager
+            />
+          </template>
           {{ item.title }}
         </v-list-item>
       </v-list-group>
@@ -56,13 +95,15 @@
 </template>
 
 <script setup lang="ts">
+import { getDiscordLink } from '@/utils/utils';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import discordIcon from '@/assets/images/icons/discord.png';
 
 const drawer = ref(false);
 const group = ref<string | null>(null);
 
-const openedGroups = ref(['Personagem', 'Termos e Regras']);
+const openedGroups = ref(['Personagem', 'Termos e Regras', 'Social']);
 
 const menu = ref([
   {
@@ -81,12 +122,23 @@ const menu = ref([
       { title: 'Regras', value: 'item4', icon: 'ra ra-metal-gate', link: '/rules' },
     ],
   },
+  {
+    title: 'Social',
+    icon: 'mdi-account-group-outline',
+    items: [
+      { title: 'Discord', value: 'item5', icon: discordIcon, link: getDiscordLink() },
+    ],
+  },
 ]);
 
 const router = useRouter();
 
-const selectGroup = (value: string, link: string) => {
+const handleClick = (value: string, link: string) => {
   group.value = value;
+  if (link.startsWith('http')) {
+    window.open(link, '_blank');
+    return;
+  }
   router.push(link);
 };
 

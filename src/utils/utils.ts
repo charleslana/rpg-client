@@ -23,3 +23,7 @@ export function decodeBase64(encoded: string): string {
 export function encodeBase64(value: string): string {
   return btoa(value);
 }
+
+export const getDiscordLink = (): string => {
+  return import.meta.env.VITE_DISCORD_LINK ?? '';
+};

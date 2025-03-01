@@ -46,7 +46,7 @@
 }
 
 .max-container {
-  max-width: 1260px;
+  max-width: 1260px !important;
 }
 
 .v-list-transparent {
@@ -69,4 +69,8 @@ html.v-overlay-scroll-blocked {
 .v-overlay__scrim {
   background-color: rgba(0, 0, 0, 0.2) !important;
   opacity: 1 !important;
+}
+
+.menu-item .v-list-item__content {
+  display: flex;
 }
