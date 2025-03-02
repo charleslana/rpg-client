@@ -11,6 +11,7 @@
         v-for="icon in icons"
         :key="icon.name"
         class="flex-grow-1 cursor-pointer d-flex justify-center icon-wrapper"
+        @click="icon.click"
       >
         <div class="flex-grow-1 cursor-pointer d-flex justify-center">
           <template v-if="icon.icon.startsWith('ra')">
@@ -27,20 +28,27 @@
       </div>
     </v-container>
   </v-app-bar>
+  <MenuUserComponent ref="drawerRef" />
 </template>
     
 <script setup lang="ts">
 import { ref } from 'vue';
+import type MenuUserComponent from './MenuUserComponent.vue';
+
+const drawerRef = ref<InstanceType<typeof MenuUserComponent> | null>(null);
+
+const openDrawer = () => {
+  drawerRef.value?.openDrawer();
+};
 
 const icons = ref([
-  { name: "menu", icon: "mdi-menu" },
-  { name: "battle", icon: "ra ra-crossed-swords" },
-  { name: "third", icon: "mdi-shield" },
-  { name: "fourth", icon: "mdi-account-group" },
-  { name: "fifth", icon: "mdi-cog" },
-  { name: "sixth", icon: "mdi-help-circle" },
+  { name: "menu", icon: "mdi-menu", click: openDrawer },
+  { name: "battle", icon: "ra ra-crossed-swords", click: () => console.log("Battle clicked") },
+  { name: "third", icon: "mdi-shield", click: () => console.log("Shield clicked") },
+  { name: "fourth", icon: "mdi-account-group", click: () => console.log("Account group clicked") },
+  { name: "fifth", icon: "mdi-cog", click: () => console.log("Settings clicked") },
+  { name: "sixth", icon: "mdi-help-circle", click: () => console.log("Help clicked") },
 ]);
-
 </script>
     
 <style scoped>

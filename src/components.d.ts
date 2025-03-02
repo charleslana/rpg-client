@@ -16,6 +16,7 @@ declare module 'vue' {
     HeaderImageComponent: typeof import('./components/HeaderImageComponent.vue')['default']
     InfoHomeComponent: typeof import('./components/InfoHomeComponent.vue')['default']
     LoginComponent: typeof import('./components/LoginComponent.vue')['default']
+    MenuUserComponent: typeof import('./components/MenuUserComponent.vue')['default']
     ModelComponent: typeof import('./components/ModelComponent.vue')['default']
     OverlayComponent: typeof import('./components/OverlayComponent.vue')['default']
     RegisterComponent: typeof import('./components/RegisterComponent.vue')['default']
