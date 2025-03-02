@@ -119,9 +119,73 @@
             </v-col>
           </v-row>
           <v-divider class="my-2" />
-          Texto b
+          <v-row
+            class="align-center ga-1"
+            no-gutters
+          >
+            <v-col class="d-flex align-center justify-center">
+              <v-icon
+                left
+                class="ra ra-emerald"
+                size="16"
+                color="teal"
+              />
+            </v-col>
+            <v-col class="d-flex align-center justify-center">
+              0 esmeraldas
+            </v-col>
+          </v-row>
           <v-divider class="my-2" />
-          Texto c
+          <v-row
+            class="align-center ga-1"
+            no-gutters
+          >
+            <v-col class="d-flex align-center justify-center">
+              <v-icon
+                left
+                class="ra ra-sapphire"
+                size="16"
+                color="light-blue-accent-4"
+              />
+            </v-col>
+            <v-col class="d-flex align-center justify-center">
+              0 safiras
+            </v-col>
+          </v-row>
+          <v-divider class="my-2" />
+          <v-row
+            class="align-center ga-1"
+            no-gutters
+          >
+            <v-col class="d-flex align-center justify-center">
+              <v-icon
+                left
+                class="ra ra-crystals"
+                size="16"
+                color="purple"
+              />
+            </v-col>
+            <v-col class="d-flex align-center justify-center">
+              0 cristais
+            </v-col>
+          </v-row>
+          <v-divider class="my-2" />
+          <v-row
+            class="align-center ga-1"
+            no-gutters
+          >
+            <v-col class="d-flex align-center justify-center">
+              <v-icon
+                left
+                class="ra ra-diamond"
+                size="16"
+                color="grey-darken-2"
+              />
+            </v-col>
+            <v-col class="d-flex align-center justify-center">
+              0 diamantes
+            </v-col>
+          </v-row>
         </v-tooltip>
       </div>
     </v-container>

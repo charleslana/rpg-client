@@ -44,10 +44,10 @@ const openDrawer = () => {
 const icons = ref([
   { name: "menu", icon: "mdi-menu", click: openDrawer },
   { name: "battle", icon: "ra ra-crossed-swords", click: () => console.log("Battle clicked") },
-  { name: "third", icon: "mdi-shield", click: () => console.log("Shield clicked") },
-  { name: "fourth", icon: "mdi-account-group", click: () => console.log("Account group clicked") },
-  { name: "fifth", icon: "mdi-cog", click: () => console.log("Settings clicked") },
-  { name: "sixth", icon: "mdi-help-circle", click: () => console.log("Help clicked") },
+  { name: "npc", icon: "ra ra-wyvern", click: () => console.log("Npc battle clicked") },
+  { name: "skill", icon: "ra ra-book", click: () => console.log("Skill clicked") },
+  { name: "inventory", icon: "ra ra-vest", click: () => console.log("Inventory clicked") },
+  { name: "chat", icon: "mdi-chat", click: () => console.log("Chat clicked") },
 ]);
 </script>
     
@@ -71,6 +71,7 @@ const icons = ref([
   height: 36px;
   font-size: 36px;
   transition: background-color .3s, transform .3s, box-shadow .3s;
+  border-radius: 50%;
 }
 
 .icon-wrapper:hover i {

@@ -1,6 +1,7 @@
 <template>
   <div class="page-wrapper">
     <AppBarUserComponent />
+    <HeaderImageComponent />
     <v-container
       class="mx-auto max-container my-5"
     >

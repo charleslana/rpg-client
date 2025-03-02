@@ -96,6 +96,7 @@ const menu = ref([
     items: [
       { title: 'Login', value: 'item1', icon: 'mdi-home-account', link: '/' },
       { title: 'Cadastro', value: 'item2', icon: 'mdi-home-account', link: '/register/ZW1haWxAZW1haWwuY29t' },
+      { title: 'User', value: 'item0', icon: 'mdi-home-account', link: '/user/status' },
     ],
   },
   {
@@ -130,14 +131,29 @@ watch(group, () => {
   drawer.value = false;
 });
 
+const saveScrollPosition = () => {
+  const scrollY = window.scrollY;
+  document.documentElement.style.setProperty('--scroll-y', `-${scrollY}px`);
+  document.documentElement.dataset.scrollY = `${scrollY}`;
+};
+
+const restoreScrollPosition = () => {
+  const scrollY = parseInt(document.documentElement.dataset.scrollY || '0', 10);
+  document.documentElement.style.removeProperty('--scroll-y');
+  document.documentElement.classList.remove('v-overlay-scroll-blocked');
+  window.scrollTo(0, scrollY);
+};
+
 watch(drawer, (isOpen) => {
   const html = document.documentElement;
   if (isOpen) {
+    saveScrollPosition();
     html.classList.add('v-overlay-scroll-blocked');
     html.style.setProperty('--v-body-scroll-x', '0px');
     html.style.setProperty('--v-body-scroll-y', '0px');
     return;
   }
+  restoreScrollPosition();
   html.classList.remove('v-overlay-scroll-blocked');
   html.style.removeProperty('--v-body-scroll-x');
   html.style.removeProperty('--v-body-scroll-y');
@@ -150,4 +166,9 @@ const openDrawer = () => {
 defineExpose({ openDrawer });
 </script>
   
-<style scoped></style>  
+<style scoped>
+.custom-drawer {
+  background: linear-gradient(180deg, #0c0809 0, #002f5e 100%);
+  border-right: 2px solid #4e5254;
+}
+</style>  
