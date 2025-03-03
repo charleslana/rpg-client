@@ -104,7 +104,3 @@ html.v-overlay-scroll-blocked {
 a {
   color: #1e5fa2 !important;
 }
-
-html.v-overlay-scroll-blocked {
-  top: var(--scroll-y, 0px) !important;
-}

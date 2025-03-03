@@ -150,30 +150,20 @@ watch(group, () => {
 
 const saveScrollPosition = () => {
   const scrollY = window.scrollY;
-  document.documentElement.style.setProperty('--scroll-y', `-${scrollY}px`);
-  document.documentElement.dataset.scrollY = `${scrollY}`;
+  document.documentElement.style.setProperty('--v-body-scroll-y', `-${scrollY}px`);
 };
 
 const restoreScrollPosition = () => {
-  const scrollY = parseInt(document.documentElement.dataset.scrollY || '0', 10);
-  document.documentElement.style.removeProperty('--scroll-y');
+  document.documentElement.style.removeProperty('--v-body-scroll-y');
   document.documentElement.classList.remove('v-overlay-scroll-blocked');
-  window.scrollTo(0, scrollY);
 };
 
 watch(drawer, (isOpen) => {
-  const html = document.documentElement;
   if (isOpen) {
     saveScrollPosition();
-    html.classList.add('v-overlay-scroll-blocked');
-    html.style.setProperty('--v-body-scroll-x', '0px');
-    html.style.setProperty('--v-body-scroll-y', '0px');
     return;
   }
   restoreScrollPosition();
-  html.classList.remove('v-overlay-scroll-blocked');
-  html.style.removeProperty('--v-body-scroll-x');
-  html.style.removeProperty('--v-body-scroll-y');
 });
 </script>
 
