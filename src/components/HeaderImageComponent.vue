@@ -9,7 +9,7 @@
   >
     <div class="overlay" />
     <div class="text-overlay">
-      <h1 class="text-h1 text-white shadow-yellow blur-5px text-uppercase">
+      <h1 class="text-h1 text-white shadow-yellow blur-5px text-uppercase fas">
         Solo Leveling RPG
       </h1>
     </div>

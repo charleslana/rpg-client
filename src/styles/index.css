@@ -1,18 +1,14 @@
-@font-face {
-  font-family: 'AGENCYB';
-  src: url('@/assets/fonts/AGENCYB_0.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+:root {
+  --font-family: 'Muli', sans-serif;
+  --font-family-a: 'Alegreya Sans', sans-serif;
 }
 
-/* *,
-*::before,
-*::after {
-  font-family: 'AGENCYB', sans-serif !important;
-} */
-
 * {
-  font-family: 'AGENCYB', sans-serif !important;
+  font-family: var(--font-family) !important;
+}
+
+.fas {
+  font-family: var(--font-family-a) !important;
 }
 
 .ra {

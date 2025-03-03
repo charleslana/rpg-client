@@ -13,7 +13,7 @@
           cols="12"
           md="6"
         >
-          <h1 class="text-h1 mb-8 shadow-yellow text-uppercase">
+          <h1 class="text-h1 mb-8 shadow-yellow text-uppercase fas">
             Solo Leveling RPG
           </h1>
           <h3 class="text-h3 mb-8 font-weight-thin">

@@ -4,7 +4,7 @@
   >
     <v-container>
       <v-row class="align-center">
-        <v-col class="text-h6 font-weight-bold text-uppercase shadow-yellow">
+        <v-col class="text-h6 font-weight-bold text-uppercase shadow-yellow fas">
           Solo Leveling RPG
         </v-col>
         <v-col>

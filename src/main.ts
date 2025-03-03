@@ -15,6 +15,8 @@ import { createApp } from 'vue';
 
 import 'rpg-awesome/css/rpg-awesome.min.css';
 
+import '@/styles/fonts.css';
+
 const app = createApp(App);
 
 registerPlugins(app);

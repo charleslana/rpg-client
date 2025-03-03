@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <AppBarUserComponent />
-    <HeaderImageComponent />
+    <HeaderImageComponent class="t-top" />
     <v-container
       class="mx-auto max-container my-5"
     >
@@ -25,4 +25,8 @@ onMounted(() => {
 });
 </script>
   
-<style scoped></style>
+<style scoped>
+.t-top {
+  margin-top: 38px;
+}
+</style>
